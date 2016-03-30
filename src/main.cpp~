@@ -1,0 +1,158 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+#include <GLES2/gl2.h>
+
+typedef struct {
+    GLuint programObject;
+} UserData;
+
+GLuint LoadShader(GLenum type, const char *shaderSrc) {
+
+    GLuint shader;
+    GLint compiled;
+
+    shader = glCreateShader(type);
+    if(!shader)
+        return 0;
+    glCompileShader(shader);
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
+    if(!compiled) {
+        GLint infoLen = 0;
+        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
+        if(infoLen > 1) {
+            char *infoLog = (char*) malloc(sizeof(char) * infoLen);
+            printf("Error compiling shader:\n%s\n", infoLog);
+            free(infoLog);
+        }
+        glDeleteShader(shader);
+        return 0;
+    }
+
+    return shader;
+}
+
+int init(UserData *ud) {
+
+    char vShaderStr[] =
+        "#version 200 es                         \n"
+        "layout(location = 0) in vec4 vPosition; \n"
+        "void main()                             \n"
+        "{                                       \n"
+        "   gl_Position = vPosition              \n"
+        "}                                       \n";
+
+    char fShaderStr[] =
+        "#version 200 es                         \n"
+        "precision mediump float;                \n"
+        "out vec4 fragColor;                     \n"
+        "void main()                             \n"
+        "{                                       \n"
+        "   fragColor = vec4(1.0, 0.0, 0.0, 1.0);\n"
+        "}                                       \n";
+    GLuint vertexShader;
+    GLuint fragmentShader;
+    GLuint programObject;
+    GLint linked;
+
+    vertexShader = LoadShader(GL_VERTEX_SHADER, vShaderStr);
+    fragmentShader = LoadShader(GL_FRAGMENT_SHADER, fShaderStr);
+
+    programObject = glCreateProgram();
+    if(programObject)
+        return 0;
+
+    glAttachShader(programObject, vertexShader);
+    glAttachShader(programObject, fragmentShader);
+
+    glLinkProgram(programObject);
+
+    glGetProgramiv(programObject, GL_LINK_STATUS, &linked);
+    if(!linked) {
+        GLint infoLen = 0;
+
+        glGetProgramiv(programObject, GL_INFO_LOG_LENGTH, &infoLen);
+        if(infoLen > 1) {
+            char *infoLog = (char*) malloc(sizeof(char) * infoLen);
+            glGetProgramInfoLog(programObject, infoLen, NULL, infoLog);
+            printf("Error shader \n%s\n", infoLen);
+            free(infoLog);
+        }
+
+        glDeleteProgram(programObject);
+        return 0;
+    }
+
+    ud->programObject = programObject;
+
+    return 1;
+}
+
+void draw(UserData *ud) {
+    GLfloat vVertices[] = {
+        0.0,  0,5, 0.0,
+        0.5, -0.5, 0.0,
+        0.5, -0.5, 0.0
+    };
+    glViewport(0, 0, 800, 500);
+    glClear(GL_COLOR_BUFFER_BIT);
+    // glUseProgram(ud->programObject);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vVertices);
+    glEnableVertexAttribArray(0);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+}
+
+void shutdown(UserData *ud) {
+    glDeleteProgram(ud->programObject);
+}
+
+int main(int argc, char *argv[])
+{
+    bool b_run = true;
+
+    if(SDL_Init(SDL_INIT_EVERYTHING)) {
+        fprintf(stderr, "Erro\n");
+        exit(-1);
+    }
+
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_DisplayMode current;
+    SDL_GetCurrentDisplayMode(0, &current);
+    SDL_Window *w = SDL_CreateWindow("Palacio-Trab.CG", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 900, 540, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+    // SDL_Window *w = SDL_CreateWindow("Palacio-Trab.CG", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+    SDL_GLContext glcontext = SDL_GL_CreateContext(w);
+    UserData ud;
+
+    if(!init(&ud))
+        exit(-1);
+
+    while(b_run) {
+        SDL_Event ev;
+        while(SDL_PollEvent(&ev)) {
+            if(ev.type == SDL_QUIT)
+                b_run = false;
+        }
+
+        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(0.0, 0.0, 0.0, 0.0);
+
+        // draw(&ud);
+
+        SDL_GL_SwapWindow(w);
+    }
+
+    shutdown(&ud);
+    SDL_GL_DeleteContext(glcontext);
+    SDL_DestroyWindow(w);
+    SDL_Quit();
+
+    return 0;
+}
+
+
