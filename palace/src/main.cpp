@@ -5,7 +5,8 @@
 
 int main()
 {
-    int b_run = 1;
+    int b_run = true;
+
     if(SDL_Init(SDL_INIT_EVERYTHING)) {
         fprintf(stderr, "Erro\n");
         exit(-1);
