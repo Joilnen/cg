@@ -1,0 +1,1 @@
+c++ -std=c++11 sdl_main.cpp  imgui_demo.cpp imgui.cpp imgui_impl_sdl.cpp imgui_draw.cpp `sdl2-config --cflags --libs` -lGLEW -lGL -lGLU

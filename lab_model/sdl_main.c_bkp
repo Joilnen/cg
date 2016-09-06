@@ -1,0 +1,248 @@
+#define GL_GLEXT_PROTOTYPES
+#include <GL/glew.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glut.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include <stdio.h>
+#include <math.h>
+#include "untitled.h"
+
+#include <iostream>
+
+using namespace std;
+
+int windowwidth;
+int windowheight;
+float rotateSpeed = 180.0f; /* degrees per second */
+int pause = true;
+
+GLfloat cam_inc = 3;
+GLfloat cam_inc2 = 0;
+
+GLuint *vbo;
+GLuint *vinx;
+
+void my(ImDrawData *d) {
+    glMatrixMode(GL_MODELVIEW);
+    glColor3f(1.0, 0.0, 0.0);
+    glLoadIdentity();
+    glBegin(GL_POLYGON);
+        glVertex2i(100, 100);
+        glVertex2i(100, 200);
+        glVertex2i(200, 100);
+        glVertex2i(200, 200);
+    glEnd();
+}
+
+static void error_callback(int error, const char* description)
+{
+    fprintf(stderr, "Error %d: %s\n", error, description);
+}
+
+void drawCube(float orientation[3], float position[3], float scale[3], float tone){
+    // vertices 
+    GLfloat vertices[] =
+    {
+        -1, -1, -1,   -1, -1,  1,   -1,  1,  1,   -1,  1, -1,
+        1, -1, -1,    1, -1,  1,    1,  1,  1,    1,  1, -1,
+        -1, -1, -1,   -1, -1,  1,    1, -1,  1,    1, -1, -1,
+        -1,  1, -1,   -1,  1,  1,    1,  1,  1,    1,  1, -1,
+        -1, -1, -1,   -1,  1, -1,    1,  1, -1,    1, -1, -1,
+        -1, -1,  1,   -1,  1,  1,    1,  1,  1,    1, -1,  1
+    };
+
+    // Define color gray
+    GLfloat colors[72];
+    for(int i = 0 ; i < 72 ; i++){
+        colors[i] = tone;
+    }
+
+    glPushMatrix();
+        glRotatef(orientation[0], 1, 0, 0);
+        glRotatef(orientation[1], 0, 1, 0);
+        glRotatef(orientation[2], 0, 0, 1);
+        glTranslatef(position[0], position[1], position[2]);
+        glScalef(scale[0], scale[1], scale[2]);
+        
+        //We have a color array and a vertex array 
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        glVertexPointer(3, GL_FLOAT, 0, vertices);
+        glColorPointer(3, GL_FLOAT, 0, colors);
+
+        //Send data : 24 vertices 
+        glDrawArrays(GL_QUADS, 0, 24);
+
+        //Cleanup states 
+        glDisableClientState(GL_COLOR_ARRAY);
+        glDisableClientState(GL_VERTEX_ARRAY);
+    glPopMatrix();
+}
+
+void drawSphere(double r, int lats, int longs, int x, int y, int z){
+    glPushMatrix();
+        glTranslatef(x, y+0.15, z);
+        glScalef(0.47, 0.47, 0.47);
+
+        int i, j;
+
+        for(i = 0; i <= lats; i++){
+            double lat0 = M_PI * (-0.5 + (double) (i - 1) / lats);
+            double z0  = sin(lat0);
+            double zr0 =  cos(lat0);
+
+            double lat1 = M_PI * (-0.5 + (double) i / lats);
+            double z1 = sin(lat1);
+            double zr1 = cos(lat1);
+
+            glColor3f(1, 0.4, 0.1);
+            glBegin(GL_QUAD_STRIP);
+
+            for(j = 0; j <= longs; j++) {
+                double lng = 2 * M_PI * (double) (j - 1) / longs;
+                double x = cos(lng);
+                double y = sin(lng);
+
+                glNormal3f(x * zr0, y * zr0, z0);
+                glVertex3f(x * zr0, y * zr0, z0);
+                glNormal3f(x * zr1, y * zr1, z1);
+                glVertex3f(x * zr1, y * zr1, z1);
+            }
+            glEnd();
+        }
+    glPopMatrix();
+
+}
+
+int main(int ac, char *av[])
+{
+    if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0) {
+        printf("Error: %s\n", SDL_GetError());
+        return -1;
+    }
+
+    glutInit(&ac, av);
+
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+    // SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    // SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    SDL_DisplayMode current;
+    SDL_GetCurrentDisplayMode(0, &current);
+    SDL_Window *window = SDL_CreateWindow("ImGui SDL2+OpenGL example", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
+    SDL_GLContext glcontext = SDL_GL_CreateContext(window);
+
+    if(glcontext == NULL) {
+        cout << "No context \n";
+        exit(-1);
+    }
+    else {
+        glewExperimental = GL_TRUE; 
+        GLenum glewError = glewInit();
+        if( glewError != GLEW_OK ) {
+            cout << "Error initializing GLEW " <<  glewGetErrorString( glewError);
+            exit(-1);
+        }
+    }
+
+    ImGui_ImplSdl_Init(window);
+
+    ImVec4 clear_color = ImColor(114, 144, 154, 0);
+
+    glEnable(GL_DEPTH_TEST); // Depth Testing
+    glDepthFunc(GL_LEQUAL);
+    glDisable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+
+    // ImGui::GetIO().RenderDrawListsFn = my;
+    float rotateCube = 0; // Apply rotation on cube
+
+    // Main loop
+    bool done = false;
+    while (!done) {
+
+        SDL_Event event;
+        while (SDL_PollEvent(&event)) {
+            ImGui_ImplSdl_ProcessEvent(&event);
+            if (event.type == SDL_QUIT)
+                done = true;
+        }
+
+        ImGui_ImplSdl_NewFrame(window);
+
+        ImGui::Begin("My Win");
+            ImGui::Text("Testando aqui");
+        ImGui::End();
+
+        if (ImGui::BeginMainMenuBar()){
+            if (ImGui::BeginMenu("Example")){
+                ImGui::MenuItem("Sub", "OK");
+                ImGui::EndMenu();
+            }
+            ImGui::EndMainMenuBar();
+        }
+
+        // Rendering
+        GLint display_w = 1200, display_h = 720;
+        glViewport(0, 0, 1200, 720);
+
+        /*Here we add some code to add the 3d world*/{
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
+
+            gluPerspective(60, (double)display_w / (double)display_h, 0.1, 3000);
+
+            glMatrixMode(GL_MODELVIEW);
+
+            glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            glLoadIdentity();
+
+            // Positions the "camera"
+            // Both respectively X, Y and Z
+            int orientation[3] = { 60, 0, 0 };
+            int position[3] = { 0, -20, -15 };
+
+            glRotatef(orientation[0], 1, 0, 0);
+            glRotatef(orientation[1], 0, 1, 0);
+            glRotatef(orientation[2], 0, 0, 1);
+            glTranslatef(position[0], position[1], position[2]);
+
+            // Draw objects
+            float orientationFloor[3] = { 0, 0, 0 }; // Radians
+            float positionFloor[3] = { 0, 0, 0 };
+            float scaleFloor[3] = { 15, 0.05, 13 };
+            drawCube(orientationFloor, positionFloor, scaleFloor, 0.1);
+
+            drawSphere(1, 10, 10, 3, 0, 0);
+
+            float orientationCube[3] = { 0, rotateCube, 0 }; // Radians
+            float positionCube[3] = { 0, 1, 0 };
+            float scaleCube[3] = { 1, 1 ,1 };
+            drawCube(orientationCube, positionCube, scaleCube, 0.2);
+            rotateCube += 0.2;
+        }
+
+        glPushMatrix();
+        glPushAttrib(GL_ALL_ATTRIB_BITS);
+        ImGui::Render();
+        glPopAttrib();
+        glPopMatrix();
+
+        SDL_GL_SwapWindow(window);
+    }
+
+    // Cleanup
+    ImGui_ImplSdl_Shutdown();
+    SDL_GL_DeleteContext(glcontext);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+
+    return 0;
+}
+
