@@ -1,6 +1,6 @@
 #include "app_state_and_events.h"
 
-AppStateAndEvents::AppStateAndEvents(): MouseToCamera{false}, camera_pos{0, 0, 20}, camera_target{0, 0, -300}, outdoor{true}, step(0.4) {
+AppStateAndEvents::AppStateAndEvents(): MouseToCamera{false}, camera_pos{0, 0, 20}, camera_target{0, 0, -300}, outdoor{true}, step(0.4), wire(false) {
 
 }
 

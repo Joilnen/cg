@@ -82,14 +82,14 @@ void ShowControl(bool* opened, AppStateAndEvents &ae) {
         else if(ImGui::Button("Abrir Porta"))
                 is_door_open = true;
         ImGui::SameLine();
-        if(ae.isWire()) {
-            if(ImGui::Button("Sólido"))
-                ae.setWire(false);
-        }
-        else if(ImGui::Button("Aramado"))
+        if(!ae.isWire()) {
+            if(ImGui::Button("Aramado"))
                 ae.setWire(true);
+        }
+        else if(ImGui::Button("Sólido"))
+                ae.setWire(false);
 
-        ImGui::Text("Posso");
+        ImGui::Text("Passo");
         ImGui::SliderFloat("#1", &step, 0.0f, 10.0f, "ratio = %.3f");
         ae.setStep(step);
 

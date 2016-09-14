@@ -10,9 +10,11 @@ void drawComputer() {
     //// Teclado
     glPushMatrix();
 
-    glTranslatef(-220, 35, 0);
+    glTranslatef(60, 35, 0);
+    glRotatef(180, 0, 1, 0);
+
     glRotatef(10, 0, 0, 1);
-    glScalef(.3, .002, 0.8);
+    glScalef(.2, .002, 0.8);
 
     // face esquerda
     glBegin(m);
@@ -59,7 +61,8 @@ void drawComputer() {
     // Cpu
     glPushMatrix();
 
-    glTranslatef(-220, 30, 0);
+    glTranslatef(50, 30, 0);
+    glRotatef(180, 0, 1, 0);
 
     glTranslatef(0, 0, 0);
     glTranslatef(-30, 0, 0);
@@ -109,7 +112,8 @@ void drawComputer() {
     // Monitor
     glPushMatrix();
 
-    glTranslatef(-220, 30, 0);
+    glTranslatef(50, 30, 0);
+    glRotatef(180, 0, 1, 0);
 
     glTranslatef(0, 0, 0);
     glTranslatef(-30, -20, 0);

@@ -1,6 +1,6 @@
 /***********************
- * Aluno Joilnen Leite
- **********************/
+ * Aluno: Joilnen Leite
+ ***********************/
 
 #include <GL/glew.h>
 #include <GL/gl.h>
@@ -17,6 +17,18 @@
 #include <boost/qvm/quat.hpp>
 #include <boost/qvm/quat_operations.hpp>
 
+#include <Magick++.h>
+
+#include <iostream>
+#include <array>
+#include "load_tex.h"
+
+#include "door.h"
+#include "table.h"
+#include "box.h"
+#include "aircond.h"
+#include "press.h"
+
 #define HM glColor3f(1, 0, 0); \
            glBegin(GL_LINES); \
                glVertex3f(-5, 0, 0); \
@@ -24,28 +36,14 @@
                glVertex3f(0, -5, 0); \
                glVertex3f(0, 5, 0); \
            glEnd()
- GLuint m = GL_LINE_LOOP;
+// GLuint m = GL_LINE_LOOP;
+GLuint m = GL_LINE_LOOP;
 
 #define MAX_NO_TEXTURES 16
 
 using namespace boost::qvm;
-
-int numLines;
-
-typedef enum state {
-    waitingforclick,
-    clickedonce,
-} state;
-
-typedef struct point {
-    int x;
-    int y;
-} point;
-
-point lines[256][2] ;
-
-int gState=waitingforclick;
-bool lineisvalid=false;
+using namespace std;
+using namespace Magick;
 
 float rotateSpeed = 180.0f; /* degrees per second */
 
@@ -69,248 +67,6 @@ math::Vec3f windowToObjectf(const math::Vec3f& windowCoord) {
   return ret;
 }
 ****/
-static void drawAircond() {
-    extern float col_aircond[3];
-
-    glColor3f(col_aircond[0], col_aircond[1], col_aircond[2]);
-
-    // Aircond
-    glPushMatrix();
-
-    glTranslatef(0, 0, 0);
-    glTranslatef(300, -100, 0);
-    glScalef(0.15, .15, 0.9);
-
-    // face esquerda
-    glBegin(m);
-        glVertex3f(-50, 100, 0);
-        glVertex3f(-50, -100, 0);
-        glVertex3f(-50, -100, -25);
-        glVertex3f(-50, 100, -25);
-    glEnd();
-
-    // face direita
-    glBegin(m);
-        glVertex3f(50, 100, 0);
-        glVertex3f(50, -100, 0);
-        glVertex3f(50, -100, -25);
-        glVertex3f(50, 100, -25);
-    glEnd();
-
-    // face inferior
-    glBegin(m);
-        glVertex3f(-50, -100, 0);
-        glVertex3f(50, -100, 0);
-        glVertex3f(50, -100, -25);
-        glVertex3f(-50, -100, -25);
-    glEnd();
-
-    // face fundo
-    glBegin(m);
-        glVertex3f(-50, -100, -25);
-        glVertex3f(50, -100, -25);
-        glVertex3f(50, 100, -25);
-        glVertex3f(-50, 100, -25);
-    glEnd();
-
-    // face frente
-    glBegin(m);
-        glVertex3f(-50, -100, 0);
-        glVertex3f(50, -100, 0);
-        glVertex3f(50, 100, 0);
-        glVertex3f(-50, 100, 0);
-    glEnd();
-    glPopMatrix();
-}
-
-
-static void drawTable() {
-    extern float col_table[3];
-    extern GLuint texture_id[MAX_NO_TEXTURES];
-
-    glColor3f(col_table[0], col_table[1], col_table[2]);
-
-
-    glBindTexture(GL_TEXTURE_2D, texture_id[0]);
-    // Mesa
-    glPushMatrix();
-
-    glTranslatef(0, 0, 0);
-    glTranslatef(-300, 40, 0);
-    glScalef(1, .02, 10.8);
-
-    // face esquerda
-    glBegin(m);
-        glTexCoord2f(0.0, 0.0); glVertex3f(-50, 100, 0);
-        glTexCoord2f(1.0, 0.0); glVertex3f(-50, -100, 0);
-        glTexCoord2f(1.0, 1.0); glVertex3f(-50, -100, -25);
-        glTexCoord2f(0.0, 1.0); glVertex3f(-50, 100, -25);
-    glEnd();
-
-    // face direita
-    glBegin(m);
-        glVertex3f(50, 100, 0);
-        glVertex3f(50, -100, 0);
-        glVertex3f(50, -100, -25);
-        glVertex3f(50, 100, -25);
-    glEnd();
-
-    // face inferior
-    glBegin(m);
-        glTexCoord2f(0.0, 0.0); glVertex3f(-50, -100, 0);
-        glTexCoord2f(1.0, 0.0); glVertex3f(50, -100, 0);
-        glTexCoord2f(1.0, 1.0); glVertex3f(50, -100, -25);
-        glTexCoord2f(0.0, 1.0); glVertex3f(-50, -100, -25);
-    glEnd();
-
-    // face fundo
-    glBegin(m);
-        glVertex3f(-50, -100, -25);
-        glVertex3f(50, -100, -25);
-        glVertex3f(50, 100, -25);
-        glVertex3f(-50, 100, -25);
-    glEnd();
-
-    // face frente
-    glBegin(m);
-        glTexCoord2f(0.0, 0.0); glVertex3f(-50, -100, 0);
-        glTexCoord2f(1.0, 0.0); glVertex3f(50, -100, 0);
-        glTexCoord2f(1.0, 1.0); glVertex3f(50, 100, 0);
-        glTexCoord2f(0.0, 1.0); glVertex3f(-50, 100, 0);
-    glEnd();
-    glPopMatrix();
-}
-
-
-static void drawBox() {
-
-    extern float col1[3];
-
-    glColor3f(col1[0], col1[1], col1[2]);
-
-    glPushMatrix();
-
-    // face esquerda
-    glBegin(m);
-        glVertex3f(-400, 200, 0);
-        glVertex3f(-400, -200, 0);
-        glVertex3f(-400, -200, -400);
-        glVertex3f(-400, 200, -400);
-    glEnd();
-    glPopMatrix();
-
-    // face direita
-    glPushMatrix();
-    glBegin(m);
-        glVertex3f(400, 200, 0);
-        glVertex3f(400, -200, 0);
-        glVertex3f(400, -200, -400);
-        glVertex3f(400, 200, -400);
-    glEnd();
-    glPopMatrix();
-
-    // face superior
-    glPushMatrix();
-    glBegin(m);
-        glVertex3f(-400, -200, 0);
-        glVertex3f(400, -200, 0);
-        glVertex3f(400, -200, -400);
-        glVertex3f(-400, -200, -400);
-    glEnd();
-    glPopMatrix();
-
-    // face inferior
-    glPushMatrix();
-    glBegin(m);
-        glVertex3f(-400, 200, 0);
-        glVertex3f(400, 200, 0);
-        glVertex3f(400, 200, -400);
-        glVertex3f(-400, 200, -400);
-    glEnd();
-    glPopMatrix();
-
-    // face fundo
-    glPushMatrix();
-    glBegin(m);
-        glVertex3f(-400, -200, -400);
-        glVertex3f(400, -200, -400);
-        glVertex3f(400, 200, -400);
-        glVertex3f(-400, 200, -400);
-    glEnd();
-    glPopMatrix();
-
-    // face frente
-    //glPushMatrix();
-    //glBegin(m);
-    //    glVertex3f(-400, -200, 0);
-    //    glVertex3f(400, -200, 0);
-    //    glVertex3f(400, 200, 0);
-    //    glVertex3f(-400, 200, 0);
-    //glEnd();
-
-    glPopMatrix();
-}
-
-static void drawDoor() {
-
-    extern float col2[3];
-
-    glColor3f(col2[0], col2[1], col2[2]);
-
-    glPushMatrix();
-
-    glTranslatef(200, 40, 20);
-    glScalef(1.4, 1.5, 0.0008);
-
-    extern bool is_door_open;
-    if(is_door_open) {
-        glTranslatef(-50, 0, 0);
-        glRotatef(-90.0, 0.0, 1.0, 0.0);
-        glTranslatef(50, 0, 0); 
-    }
-
-    // face esquerda
-    glBegin(m);
-        glVertex3f(-50, 100, 0);
-        glVertex3f(-50, -100, 0);
-        glVertex3f(-50, -100, -25);
-        glVertex3f(-50, 100, -25);
-    glEnd();
-
-    // face direita
-    glBegin(m);
-        glVertex3f(50, 100, 0);
-        glVertex3f(50, -100, 0);
-        glVertex3f(50, -100, -25);
-        glVertex3f(50, 100, -25);
-    glEnd();
-
-    // face inferior
-    glBegin(m);
-        glVertex3f(-50, -100, 0);
-        glVertex3f(50, -100, 0);
-        glVertex3f(50, -100, -25);
-        glVertex3f(-50, -100, -25);
-    glEnd();
-
-    // face fundo
-    glBegin(m);
-        glVertex3f(-50, -100, -25);
-        glVertex3f(50, -100, -25);
-        glVertex3f(50, 100, -25);
-        glVertex3f(-50, 100, -25);
-    glEnd();
-
-    // face frente
-    glBegin(m);
-        glVertex3f(-50, -100, 0);
-        glVertex3f(50, -100, 0);
-        glVertex3f(50, 100, 0);
-        glVertex3f(-50, 100, 0);
-    glEnd();
-
-    glPopMatrix();
-}
 
 static void drawScene(AppStateAndEvents &ae, float dT) {
     static float angle = 180.0f;
@@ -335,6 +91,7 @@ static void drawScene(AppStateAndEvents &ae, float dT) {
     drawComputer();
     drawTable();
     drawAircond();
+    drawPress();
 
     if(ae.isWire())
         m = GL_LINE_LOOP;
@@ -348,36 +105,25 @@ void setUpOpenGL() {
         SDL_GetWindowSize(lpwin, &windowwidth, &windowheight);
     else
         windowwidth = 1024; windowheight = 600;
+    GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat mat_shininess[] = {50.0};
+    GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
+    GLfloat ambient_light[] = {.2, .2, .2, 1.0};
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(512, 512,  300, 300, 10, 10);
     glViewport(0, 0, windowwidth, windowheight);
 
-    glMatrixMode(GL_MODELVIEW);
-
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
-    glFrontFace(GL_CCW);
-
-    glEnable(GL_CULL_FACE);
-
-    glEnable(GL_NORMALIZE);
-    glEnable(GL_POINT_SMOOTH);
-
-    glShadeModel(GL_SMOOTH);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+
+    loadTex();
 }
 
 float getTimeInterval() {
     static struct timeval time = {0, 0};
     static struct timeval last = {0, 0};
     int sec, usec;
-
 
     gettimeofday(&time, NULL);
 
@@ -406,9 +152,6 @@ void renderLab(SDL_Window *win, AppStateAndEvents &ae) {
     GLint display_w, display_h;
     SDL_GetWindowSize(win, &display_w, &display_h);
     glViewport(0, 0, display_w, display_h);
-
-    glMatrixMode(GL_MODELVIEW);
-
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
