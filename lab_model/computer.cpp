@@ -1,5 +1,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include "load_tex.h"
+
+extern GLuint  texture_id[TEX_NUMBER];
 
 void drawComputer() {
     extern GLuint m;
@@ -9,6 +12,8 @@ void drawComputer() {
 
     //// Teclado
     glPushMatrix();
+    glEnable(GL_TEXTURE_2D);
+    // glBindTexture(GL_TEXTURE_2D, texture_id[COMPUTER]);
 
     glTranslatef(60, 35, 0);
     glRotatef(180, 0, 1, 0);

@@ -3,4 +3,6 @@
 
 void loadTex();
 
+enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, COMPUTER, CORTINA, TEX_NUMBER};
+
 #endif

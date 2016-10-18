@@ -4,9 +4,7 @@
 #include "cube.h"
 #include "load_tex.h"
 
-extern GLuint  texture_id[TEX_NUMBER];
-
-void drawBox() {
+ void drawBox() {
     extern float col1[3];
     extern GLuint m;
 

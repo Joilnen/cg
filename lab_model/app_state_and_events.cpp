@@ -77,3 +77,23 @@ void AppStateAndEvents::setWire(bool f) {
     wire = f;
 }
 
+void AppStateAndEvents::setAmbientLightParms(std::array<GLfloat, 4> &b) {
+    ambient_light[0] = b[0];
+    ambient_light[1] = b[1];
+    ambient_light[2] = b[2];
+    ambient_light[3] = 1;
+}
+
+std::array<GLfloat, 4> &::AppStateAndEvents::getAmbientLightParms() {
+    return ambient_light;
+}
+
+void AppStateAndEvents::setCamAngRot(float a) {
+    ang = a;
+}
+
+float AppStateAndEvents::getCamAngRot() {
+    return ang;
+}
+
+

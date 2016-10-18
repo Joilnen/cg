@@ -4,6 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+AIRCOND_H	aircond.h	2;"	d
 APP_STATE_AND_EVENTS	app_state_and_events.h	2;"	d
 Accessed	imgui_internal.h	/^    bool                    Accessed;                           \/\/ Set to true when any widget access the current window$/;"	m	struct:ImGuiWindow
 Active	imgui_internal.h	/^    bool                    Active;                             \/\/ Set to true on Begin()$/;"	m	struct:ImGuiWindow
@@ -51,7 +52,7 @@ AllowKeyboardFocusStack	imgui_internal.h	/^    ImVector<bool>          AllowKeyb
 Alpha	imgui.h	/^    float       Alpha;                      \/\/ Global alpha applies to everything in ImGui$/;"	m	struct:ImGuiStyle
 AntiAliasedLines	imgui.h	/^    bool        AntiAliasedLines;           \/\/ Enable anti-aliasing on lines\/borders. Disable if you are really tight on CPU\/GPU.$/;"	m	struct:ImGuiStyle
 AntiAliasedShapes	imgui.h	/^    bool        AntiAliasedShapes;          \/\/ Enable anti-aliasing on filled shapes (rounded rectangles, circles, etc.)$/;"	m	struct:ImGuiStyle
-AppStateAndEvents	app_state_and_events.cpp	/^AppStateAndEvents::AppStateAndEvents(): MouseToCamera{false}, camera_pos{0, 0, 6}, camera_target{0, 0, 0}, outdoor{true} {$/;"	f	class:AppStateAndEvents
+AppStateAndEvents	app_state_and_events.cpp	/^AppStateAndEvents::AppStateAndEvents(): MouseToCamera{false}, camera_pos{0, 0, 20}, camera_target{0, 0, -300}, outdoor{true}, step(0.4), wire(false) {$/;"	f	class:AppStateAndEvents
 AppStateAndEvents	app_state_and_events.h	/^class AppStateAndEvents {$/;"	c
 Ascent	imgui.h	/^    float                       Ascent, Descent;    \/\/ Ascent: distance from top to bottom of e.g. 'A' [0..FontSize]$/;"	m	struct:ImFont
 AutoFitFramesX	imgui_internal.h	/^    int                     AutoFitFramesX, AutoFitFramesY;$/;"	m	struct:ImGuiWindow
@@ -61,7 +62,12 @@ AutoPosLastDirection	imgui_internal.h	/^    int                     AutoPosLastD
 BEZIERCURVE_001	palace.h	23;"	d
 BEZIERCURVE_002	palace.h	13;"	d
 BEZIERCURVE_004	palace.h	5;"	d
+BOX_H	box.h	2;"	d
 BUFFER_OFFSET	func.h	27;"	d
+BUTTON_RIGHT	render2d.h	13;"	d
+BUTTON_RIGHT	renderLab.h	15;"	d
+BUTTON_UP	render2d.h	14;"	d
+BUTTON_UP	renderLab.h	16;"	d
 BackupCurrentLineHeight	imgui_internal.h	/^    float       BackupCurrentLineHeight;$/;"	m	struct:ImGuiGroupData
 BackupCurrentLineTextBaseOffset	imgui_internal.h	/^    float       BackupCurrentLineTextBaseOffset;$/;"	m	struct:ImGuiGroupData
 BackupCursorMaxPos	imgui_internal.h	/^    ImVec2      BackupCursorMaxPos;$/;"	m	struct:ImGuiGroupData
@@ -105,6 +111,9 @@ ButtonBehavior	imgui.cpp	/^bool ImGui::ButtonBehavior(const ImRect& bb, ImGuiID 
 ButtonEx	imgui.cpp	/^bool ImGui::ButtonEx(const char* label, const ImVec2& size_arg, ImGuiButtonFlags flags)$/;"	f	class:ImGui
 ButtonRepeat	imgui_internal.h	/^    bool                    ButtonRepeat;           \/\/ == ButtonRepeatStack.back() [empty == false]$/;"	m	struct:ImGuiDrawContext
 ButtonRepeatStack	imgui_internal.h	/^    ImVector<bool>          ButtonRepeatStack;$/;"	m	struct:ImGuiDrawContext
+CEILING	load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
+CEILING	working/load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
+COMPUTER_H	computer.h	2;"	d
 CUBE	palace.h	21;"	d
 CUBE	untitled.h	10;"	d
 CUBE_001	palace.h	20;"	d
@@ -127,6 +136,7 @@ CUBE_012	palace.h	9;"	d
 CUBE_013	palace.h	8;"	d
 CUBE_014	palace.h	7;"	d
 CUBE_015	palace.h	6;"	d
+CUBE_H	cube.h	2;"	d
 CalcExtraSpace	imgui.cpp	/^float ImGuiSimpleColumns::CalcExtraSpace(float avail_w)$/;"	f	class:ImGuiSimpleColumns
 CalcFontSize	imgui_internal.h	/^    float       CalcFontSize() const                    { return GImGui->FontBaseSize * FontWindowScale; }$/;"	f	struct:ImGuiWindow
 CalcItemRectClosestPoint	imgui.cpp	/^ImVec2 ImGui::CalcItemRectClosestPoint(const ImVec2& pos, bool on_edge, float outward)$/;"	f	class:ImGui
@@ -239,6 +249,9 @@ CursorPosPrevLine	imgui_internal.h	/^    ImVec2                  CursorPosPrevLi
 CursorStartPos	imgui_internal.h	/^    ImVec2                  CursorStartPos;$/;"	m	struct:ImGuiDrawContext
 CurveTessellationTol	imgui.h	/^    float       CurveTessellationTol;       \/\/ Tessellation tolerance. Decrease for highly tessellated curves (higher quality, more polygons), increase to reduce quality.$/;"	m	struct:ImGuiStyle
 DC	imgui_internal.h	/^    ImGuiDrawContext        DC;                                 \/\/ Temporary per-window data, reset at the beginning of the frame$/;"	m	struct:ImGuiWindow
+DOOR	load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
+DOOR	working/load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
+DOOR_H	door.h	2;"	d
 Data	imgui.h	/^    ImVector<Pair>      Data;$/;"	m	struct:ImGuiStorage
 Data	imgui.h	/^    T*                          Data;$/;"	m	class:ImVector
 DataTypeApplyOp	imgui.cpp	/^static void DataTypeApplyOp(ImGuiDataType data_type, int op, void* value1, const void* value2)\/\/ Store into value1$/;"	f	file:
@@ -287,7 +300,6 @@ DrawAllMeshes	func.h	/^void DrawAllMeshes()$/;"	f
 DrawBaseBallField	render2d.cpp	/^static void DrawBaseBallField(AppStateAndEvents &ae, float dT) {$/;"	f	file:
 DrawList	imgui_internal.h	/^    ImDrawList*             DrawList;$/;"	m	struct:ImGuiWindow
 DrawMesh	func.h	/^void DrawMesh(unsigned int index, int apply_transformations) {$/;"	f
-DrawScene	render2d.cpp	/^void DrawScene(AppStateAndEvents &ae, float dT) {$/;"	f
 DrawScene	render3d.cpp	/^void DrawScene(AppStateAndEvents &ae, float dT) {$/;"	f
 DstFont	imgui.h	/^    ImFont*         DstFont;$/;"	m	struct:ImFontConfig
 Dummy	imgui.cpp	/^void ImGui::Dummy(const ImVec2& size)$/;"	f	class:ImGui
@@ -314,6 +326,9 @@ ExampleAppLog	imgui_demo.cpp	/^struct ExampleAppLog$/;"	s	file:
 ExecCommand	imgui_demo.cpp	/^    void    ExecCommand(const char* command_line)$/;"	f	struct:ExampleAppConsole
 Expand	imgui_internal.h	/^    void        Expand(const ImVec2& amount)    { Min.x -= amount.x; Min.y -= amount.y; Max.x += amount.x; Max.y += amount.y; }$/;"	f	struct:ImRect
 Expand	imgui_internal.h	/^    void        Expand(const float amount)      { Min.x -= amount;   Min.y -= amount;   Max.x += amount;   Max.y += amount; }$/;"	f	struct:ImRect
+FACE_H	face.h	2;"	d
+Face	face.cpp	/^Face::Face() {$/;"	f	class:Face
+Face	face.h	/^class Face {$/;"	c
 FallbackChar	imgui.h	/^    ImWchar                     FallbackChar;       \/\/ = '?'           \/\/ Replacement glyph if one isn't found. Only set via SetFallbackChar()$/;"	m	struct:ImFont
 FallbackGlyph	imgui.h	/^    const Glyph*                FallbackGlyph;      \/\/ == FindGlyph(FontFallbackChar)$/;"	m	struct:ImFont
 FallbackXAdvance	imgui.h	/^    float                       FallbackXAdvance;   \/\/$/;"	m	struct:ImFont
@@ -474,6 +489,7 @@ Glyphs	imgui.h	/^    ImVector<Glyph>             Glyphs;$/;"	m	struct:ImFont
 GrabMinSize	imgui.h	/^    float       GrabMinSize;                \/\/ Minimum width\/height of a grab box for slider\/scrollbar$/;"	m	struct:ImGuiStyle
 GrabRounding	imgui.h	/^    float       GrabRounding;               \/\/ Radius of grabs corners rounding. Set to 0.0f to have rectangular slider grabs.$/;"	m	struct:ImGuiStyle
 GroupStack	imgui_internal.h	/^    ImVector<ImGuiGroupData>GroupStack;$/;"	m	struct:ImGuiDrawContext
+HM	renderLab.cpp	33;"	d	file:
 HSV	imgui.h	/^    static ImColor HSV(float h, float s, float v, float a = 1.0f)   { float r,g,b; ImGui::ColorConvertHSVtoRGB(h, s, v, r, g, b); return ImColor(r,g,b,a); }$/;"	f	struct:ImColor
 HasSelection	imgui.h	/^    bool    HasSelection() const { return SelectionStart != SelectionEnd; }$/;"	f	struct:ImGuiTextEditCallbackData
 HasSelection	imgui_internal.h	/^    bool                HasSelection() const        { return StbState.select_start != StbState.select_end; }$/;"	f	struct:ImGuiTextEditState
@@ -516,10 +532,11 @@ IM_PI	imgui_internal.h	81;"	d
 IM_PLACEMENT_NEW	imgui_internal.h	146;"	d
 IM_PRINTFARGS	imgui.h	34;"	d
 IM_PRINTFARGS	imgui.h	36;"	d
-INC	Makefile	/^INC=`sdl2-config --cflags` -I \/usr\/include$/;"	m
+INC	Makefile	/^INC=`sdl2-config --cflags` `Magick++-config --cppflags` -I \/usr\/include -I \/usr\/local\/include$/;"	m
 INCLUDE_STB_TEXTEDIT_H	stb_textedit.h	269;"	d
-INPUT	render2d.cpp	18;"	d	file:
+INPUT	render2d.cpp	40;"	d	file:
 INPUT	render3d.cpp	18;"	d	file:
+INPUT	renderLab.cpp	53;"	d	file:
 INX_TYPE	palace.h	17795;"	d
 INX_TYPE	untitled.h	5767;"	d
 IO	imgui_internal.h	/^    ImGuiIO                 IO;$/;"	m	struct:ImGuiState
@@ -946,7 +963,9 @@ KeySuper	imgui.h	/^    bool        KeySuper;                   \/\/ Keyboard mod
 KeysDown	imgui.h	/^    bool        KeysDown[512];              \/\/ Keyboard keys that are pressed (in whatever storage order you naturally have access to keyboard data)$/;"	m	struct:ImGuiIO
 KeysDownDuration	imgui.h	/^    float       KeysDownDuration[512];      \/\/ Duration the keyboard key has been down (0.0f == just pressed)$/;"	m	struct:ImGuiIO
 KeysDownDurationPrev	imgui.h	/^    float       KeysDownDurationPrev[512];  \/\/ Previous duration the key has been down$/;"	m	struct:ImGuiIO
-LIBS	Makefile	/^LIBS=`sdl2-config --cflags --libs` -lGLEW -lGL -lGLU -l glut -lm$/;"	m
+LIBS	Makefile	/^LIBS=`sdl2-config --cflags --libs` `Magick++-config --cppflags --libs` -L \/usr\/lib -L \/usr\/lib64 -L \/usr\/local\/lib -L \/usr\/local\/lib64 -lGLEW -lGL -lGLU -l glut -lm$/;"	m
+LOAD_TEX_H	load_tex.h	2;"	d
+LOAD_TEX_H	working/load_tex.h	2;"	d
 LabelText	imgui.cpp	/^void ImGui::LabelText(const char* label, const char* fmt, ...)$/;"	f	class:ImGui
 LabelTextV	imgui.cpp	/^void ImGui::LabelTextV(const char* label, const char* fmt, va_list args)$/;"	f	class:ImGui
 LastFrameActive	imgui_internal.h	/^    int                     LastFrameActive;$/;"	m	struct:ImGuiWindow
@@ -977,6 +996,9 @@ LogToClipboard	imgui.cpp	/^void ImGui::LogToClipboard(int max_depth)$/;"	f	class
 LogToFile	imgui.cpp	/^void ImGui::LogToFile(int max_depth, const char* filename)$/;"	f	class:ImGui
 LogToTTY	imgui.cpp	/^void ImGui::LogToTTY(int max_depth)$/;"	f	class:ImGui
 LowerBound	imgui.cpp	/^static ImVector<ImGuiStorage::Pair>::iterator LowerBound(ImVector<ImGuiStorage::Pair>& data, ImU32 key)$/;"	f	file:
+MAX_NO_TEXTURES	renderLab.cpp	44;"	d	file:
+MAX_NO_TEXTURES	sdl_main.cpp	29;"	d	file:
+MODELER_H	modeler.h	2;"	d
 MarkSettingsDirty	imgui.cpp	/^static void MarkSettingsDirty()$/;"	f	file:
 Max	imgui_internal.h	/^    ImVec2      Max;    \/\/ Lower-right$/;"	m	struct:ImRect
 MemAlloc	imgui.cpp	/^void* ImGui::MemAlloc(size_t sz)$/;"	f	class:ImGui
@@ -998,6 +1020,9 @@ MetricsRenderIndices	imgui.h	/^    int         MetricsRenderIndices;       \/\/ 
 MetricsRenderVertices	imgui.h	/^    int         MetricsRenderVertices;      \/\/ Vertices output during last call to Render()$/;"	m	struct:ImGuiIO
 Min	imgui_internal.h	/^    ImVec2      Min;    \/\/ Upper-left$/;"	m	struct:ImRect
 ModalWindowDarkeningRatio	imgui_internal.h	/^    float                   ModalWindowDarkeningRatio;$/;"	m	struct:ImGuiState
+ModeDraw	face.h	/^enum class ModeDraw {WIRE, SOLID, SHADED};$/;"	c
+Modeler	modeler.cpp	/^Modeler::Modeler(): editing(false) {$/;"	f	class:Modeler
+Modeler	modeler.h	/^class Modeler {$/;"	c
 MouseClicked	imgui.h	/^    bool        MouseClicked[5];            \/\/ Mouse button went from !Down to Down$/;"	m	struct:ImGuiIO
 MouseClickedPos	imgui.h	/^    ImVec2      MouseClickedPos[5];         \/\/ Position at time of clicking$/;"	m	struct:ImGuiIO
 MouseClickedTime	imgui.h	/^    float       MouseClickedTime[5];        \/\/ Time of last click (used to figure out double-click)$/;"	m	struct:ImGuiIO
@@ -1030,11 +1055,15 @@ NewFrame	imgui.cpp	/^void ImGui::NewFrame()$/;"	f	class:ImGui
 NextColumn	imgui.cpp	/^void ImGui::NextColumn()$/;"	f	class:ImGui
 NextWidth	imgui_internal.h	/^    float       Width, NextWidth;$/;"	m	struct:ImGuiSimpleColumns
 NextWidths	imgui_internal.h	/^    float       Pos[8], NextWidths[8];$/;"	m	struct:ImGuiSimpleColumns
-OBJ	Makefile	/^OBJ=sdl_main.o render2d.o imgui.o imgui_impl_sdl.o imgui_draw.o event.o ui.o app_state_and_events.o$/;"	m
+OBJ	Makefile	/^OBJ = sdl_main.o renderLab.o imgui.o imgui_impl_sdl.o \\$/;"	m
 OBJECTS_COUNT	palace.h	4;"	d
 OBJECTS_COUNT	untitled.h	4;"	d
+OBJECT_H	object.h	2;"	d
 OFFSETOF	imgui_impl_sdl.cpp	61;"	d	file:
 OFFSETOF	imgui_impl_sdl.cpp	88;"	d	file:
+Object	object.cpp	/^Object::Object() {$/;"	f	class:Object
+Object	object.h	/^class Object {$/;"	c
+ObjectType	modeler.h	/^enum class ObjectType {PLAN, CUBE};$/;"	c
 OffsetNorm	imgui_internal.h	/^    float       OffsetNorm;     \/\/ Column start offset, normalized 0.0 (far left) -> 1.0 (far right)$/;"	m	struct:ImGuiColumnData
 OnKeyPressed	imgui.cpp	/^void ImGuiTextEditState::OnKeyPressed(int key)$/;"	f	class:ImGuiTextEditState
 OpenNextNode	imgui.h	/^    static inline void      OpenNextNode(bool open) { ImGui::SetNextTreeNodeOpened(open, 0); } \/\/ OBSOLETE 1.34+$/;"	f	namespace:ImGui
@@ -1047,7 +1076,10 @@ Overlaps	imgui_internal.h	/^    bool        Overlaps(const ImRect& r) const { re
 OverlayDrawList	imgui_internal.h	/^    ImDrawList              OverlayDrawList;                    \/\/ Optional software render of mouse cursors, if io.MouseDrawCursor is set + a few debug overlays$/;"	m	struct:ImGuiState
 OversampleH	imgui.h	/^    int             OversampleH, OversampleV;   \/\/ 3, 1     \/\/ Rasterize at higher quality for sub-pixel positioning. We don't use sub-pixel positions on the Y axis.$/;"	m	struct:ImFontConfig
 OversampleV	imgui.h	/^    int             OversampleH, OversampleV;   \/\/ 3, 1     \/\/ Rasterize at higher quality for sub-pixel positioning. We don't use sub-pixel positions on the Y axis.$/;"	m	struct:ImFontConfig
+PLAN	modeler.h	/^enum class ObjectType {PLAN, CUBE};$/;"	m	class:ObjectType
 PLANE	untitled.h	9;"	d
+POWER_PLUG_H	power_plug.h	2;"	d
+PRESS_H	press.h	2;"	d
 Pair	imgui.h	/^        Pair(ImGuiID _key, float _val_f) { key = _key; val_f = _val_f; }$/;"	f	struct:ImGuiStorage::Pair
 Pair	imgui.h	/^        Pair(ImGuiID _key, int _val_i) { key = _key; val_i = _val_i; }$/;"	f	struct:ImGuiStorage::Pair
 Pair	imgui.h	/^        Pair(ImGuiID _key, void* _val_p) { key = _key; val_p = _val_p; }$/;"	f	struct:ImGuiStorage::Pair
@@ -1123,6 +1155,7 @@ PushTextWrapPos	imgui.cpp	/^void ImGui::PushTextWrapPos(float wrap_pos_x)$/;"	f	
 PushTextureID	imgui_draw.cpp	/^void ImDrawList::PushTextureID(const ImTextureID& texture_id)$/;"	f	class:ImDrawList
 RENDER_2D	render2d.h	2;"	d
 RENDER_3D	render3d.h	2;"	d
+RENDER_LAB	renderLab.h	2;"	d
 RadioButton	imgui.cpp	/^bool ImGui::RadioButton(const char* label, bool active)$/;"	f	class:ImGui
 RadioButton	imgui.cpp	/^bool ImGui::RadioButton(const char* label, int* v, int v_button)$/;"	f	class:ImGui
 ReadOnly	imgui.h	/^    bool                ReadOnly;       \/\/ Read-only mode                       \/\/ Read-only$/;"	m	struct:ImGuiTextEditCallbackData
@@ -1149,7 +1182,8 @@ RootWindow	imgui_internal.h	/^    ImGuiWindow*            RootWindow;$/;"	m	stru
 Round	imgui_internal.h	/^    void        Round()                         { Min.x = (float)(int)Min.x; Min.y = (float)(int)Min.y; Max.x = (float)(int)Max.x; Max.y = (float)(int)Max.y; }$/;"	f	struct:ImRect
 RoundScalar	imgui.cpp	/^float ImGui::RoundScalar(float value, int decimal_precision)$/;"	f	class:ImGui
 SDL_Event	imgui_impl_sdl.h	/^typedef union SDL_Event SDL_Event;$/;"	t	typeref:union:SDL_Event
-SRC	Makefile	/^SRC=sdl_main.c render2d.c imgui.cpp imgui_impl_sdl.cpp imgui_draw.cpp event.cpp ui.cpp app_state_and_events.cpp$/;"	m
+SOLID	face.h	/^enum class ModeDraw {WIRE, SOLID, SHADED};$/;"	m	class:ModeDraw
+SRC	Makefile	/^SRC = sdl_main.c renderLab.c imgui.cpp imgui_impl_sdl.cpp \\$/;"	m
 STBRP_ASSERT	imgui_draw.cpp	71;"	d	file:
 STBRP_ASSERT	stb_rect_pack.h	198;"	d
 STBRP_DEF	stb_rect_pack.h	59;"	d
@@ -1366,7 +1400,6 @@ SetStateStorage	imgui.cpp	/^void ImGui::SetStateStorage(ImGuiStorage* tree)$/;"	
 SetTexID	imgui.h	/^    void                        SetTexID(void* id)  { TexID = id; }$/;"	f	struct:ImFontAtlas
 SetTooltip	imgui.cpp	/^void ImGui::SetTooltip(const char* fmt, ...)$/;"	f	class:ImGui
 SetTooltipV	imgui.cpp	/^void ImGui::SetTooltipV(const char* fmt, va_list args)$/;"	f	class:ImGui
-SetUpLights	render2d.cpp	/^void SetUpLights() {$/;"	f
 SetUpLights	render3d.cpp	/^void SetUpLights() {$/;"	f
 SetUpOpenGL	render2d.cpp	/^void SetUpOpenGL() {$/;"	f
 SetUpOpenGL	render3d.cpp	/^void SetUpOpenGL() {$/;"	f
@@ -1455,6 +1488,12 @@ Style	imgui_internal.h	/^    ImGuiStyle              Style;$/;"	m	struct:ImGuiSt
 StyleModifiers	imgui_internal.h	/^    ImVector<ImGuiStyleMod> StyleModifiers;                     \/\/ Stack for PushStyleVar()\/PopStyleVar()$/;"	m	struct:ImGuiState
 T	render2d.cpp	/^float t, T = 0.0;$/;"	v
 T	render3d.cpp	/^float t, T = 0.0;$/;"	v
+T	renderLab.cpp	/^float t, T = 0.0;$/;"	v
+TABLE_H	table.h	2;"	d
+TEX_NAMES	load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	g
+TEX_NAMES	working/load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	g
+TEX_NUMBER	load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
+TEX_NUMBER	working/load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
 TempBuffer	imgui_internal.h	/^    char                    TempBuffer[1024*3+1];               \/\/ temporary text buffer$/;"	m	struct:ImGuiState
 TempTextBuffer	imgui_internal.h	/^    ImVector<char>      TempTextBuffer;$/;"	m	struct:ImGuiTextEditState
 TexDesiredWidth	imgui.h	/^    int                         TexDesiredWidth;    \/\/ Texture width desired by user before Build(). Must be a power-of-two. If have many glyphs your graphics API have texture size restrictions you may want to increase texture width to decrease height.$/;"	m	struct:ImFontAtlas
@@ -1528,8 +1567,13 @@ ValueColor	imgui.cpp	/^void ImGui::ValueColor(const char* prefix, unsigned int v
 Values	imgui.cpp	/^    const float* Values;$/;"	m	struct:ImGuiPlotArrayGetterData	file:
 Var	imgui_internal.h	/^    ImGuiStyleVar   Var;$/;"	m	struct:ImGuiStyleMod
 VtxBuffer	imgui.h	/^    ImVector<ImDrawVert>    VtxBuffer;          \/\/ Vertex buffer.$/;"	m	struct:ImDrawList
+WALL_IN	load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
+WALL_IN	working/load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
+WALL_OUT	load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
+WALL_OUT	working/load_tex.h	/^enum TEX_NAMES {DOOR = 1, WALL_OUT, WALL_IN, CEILING, TEX_NUMBER};$/;"	e	enum:TEX_NAMES
 WIN32_LEAN_AND_MEAN	imgui.cpp	9190;"	d	file:
 WIN32_LEAN_AND_MEAN	imgui.cpp	9191;"	d	file:
+WIRE	face.h	/^enum class ModeDraw {WIRE, SOLID, SHADED};$/;"	m	class:ModeDraw
 WantCaptureKeyboard	imgui.h	/^    bool        WantCaptureKeyboard;        \/\/ Widget is active (= ImGui will use your keyboard input)$/;"	m	struct:ImGuiIO
 WantCaptureMouse	imgui.h	/^    bool        WantCaptureMouse;           \/\/ Mouse is hovering a window or widget is active (= ImGui will use your mouse input)$/;"	m	struct:ImGuiIO
 WantTextInput	imgui.h	/^    bool        WantTextInput;              \/\/ Some text input widget is active, which will read input characters from the InputCharacters array.$/;"	m	struct:ImGuiIO
@@ -1568,7 +1612,10 @@ _VtxWritePtr	imgui.h	/^    ImDrawVert*             _VtxWritePtr;       \/\/ [Int
 __STB_INCLUDE_STB_TRUETYPE_H__	stb_truetype.h	448;"	d
 _grow_capacity	imgui.h	/^    inline int                  _grow_capacity(int new_size)    { int new_capacity = Capacity ? (Capacity + Capacity\/2) : 8; return new_capacity > new_size ? new_capacity : new_size; }$/;"	f	class:ImVector
 active_head	stb_rect_pack.h	/^   stbrp_node *active_head;$/;"	m	struct:stbrp_context
+addFace	object.cpp	/^void Object::addFace(Face f) {$/;"	f	class:Object
+addObject	modeler.cpp	/^void Modeler::addObject(Object o) {$/;"	f	class:Modeler
 align	stb_rect_pack.h	/^   int align;$/;"	m	struct:stbrp_context
+amb_light	ui.cpp	/^float amb_light;$/;"	v
 append	imgui.cpp	/^void ImGuiTextBuffer::append(const char* fmt, ...)$/;"	f	class:ImGuiTextBuffer
 appendv	imgui.cpp	/^void ImGuiTextBuffer::appendv(const char* fmt, va_list args)$/;"	f	class:ImGuiTextBuffer
 array_of_unicode_codepoints	stb_truetype.h	/^   int *array_of_unicode_codepoints;       \/\/ if non-zero, then this is an array of unicode codepoints$/;"	m	struct:__anon9
@@ -1582,10 +1629,9 @@ begin	imgui.h	/^    inline const_iterator       begin() const                   
 begin	imgui.h	/^    inline iterator             begin()                         { return Data; }$/;"	f	class:ImVector
 binary_to_compressed_c	extra_fonts/binary_to_compressed_c.cpp	/^bool binary_to_compressed_c(const char* filename, const char* symbol, bool use_base85_encoding, bool use_compression)$/;"	f
 bottom_y	stb_truetype.h	/^   int x,y,bottom_y;$/;"	m	struct:__anon20
+by_eq	render2d.cpp	/^bool by_eq = false;$/;"	v
 c_str	imgui.h	/^    const char*         c_str() const { return Buf.Data; }$/;"	f	struct:ImGuiTextBuffer
-cam_inc	render2d.cpp	/^GLfloat cam_inc = 3;$/;"	v
 cam_inc	render3d.cpp	/^GLfloat cam_inc = 3;$/;"	v
-cam_inc2	render2d.cpp	/^GLfloat cam_inc2 = 0;$/;"	v
 cam_inc2	render3d.cpp	/^GLfloat cam_inc2 = 0;$/;"	v
 camera_pos	app_state_and_events.h	/^    std::array<GLfloat, 3> camera_pos[3], camera_target[3];$/;"	m	class:AppStateAndEvents
 camera_target	app_state_and_events.h	/^    std::array<GLfloat, 3> camera_pos[3], camera_target[3];$/;"	m	class:AppStateAndEvents
@@ -1595,22 +1641,55 @@ char_storage	stb_textedit.h	/^   short           char_storage;$/;"	m	struct:__an
 chardata_for_range	stb_truetype.h	/^   stbtt_packedchar *chardata_for_range; \/\/ output$/;"	m	struct:__anon9
 clear	imgui.h	/^    inline void                 clear()                         { if (Data) { Size = Capacity = 0; ImGui::MemFree(Data); Data = NULL; } }$/;"	f	class:ImVector
 clear	imgui.h	/^    void                clear() { Buf.clear(); Buf.push_back(0); }$/;"	f	struct:ImGuiTextBuffer
+clickedonce	render2d.cpp	/^    clickedonce,$/;"	e	enum:state	file:
 col	imgui.h	/^    ImU32   col;$/;"	m	struct:ImDrawVert
+col1	ui.cpp	/^float col1[3] = { 1.0f,0.0f,0.2f };$/;"	v
+col2	ui.cpp	/^float col2[3] = { 1.0f,0.8f,0.2f };$/;"	v
+col_aircond	ui.cpp	/^float col_aircond[3] = { 0.3f,0.2f,0.0f };$/;"	v
+col_computer	ui.cpp	/^float col_computer[3] = { 1.0f,0.4f,0.7f };$/;"	v
+col_table	ui.cpp	/^float col_table[3] = { 0.3f,0.4f,0.7f };$/;"	v
 const_iterator	imgui.h	/^    typedef const value_type*   const_iterator;$/;"	t	class:ImVector
+createCube	modeler.cpp	/^void Modeler::createCube() {$/;"	f	class:Modeler
+createObject	modeler.cpp	/^void Modeler::createObject(ObjectType ot) {$/;"	f	class:Modeler
+createPlan	modeler.cpp	/^void Modeler::createPlan() {$/;"	f	class:Modeler
 cursor	stb_textedit.h	/^   int cursor;$/;"	m	struct:__anon3
 cursor_at_end_of_line	stb_textedit.h	/^   unsigned char cursor_at_end_of_line; \/\/ not implemented yet$/;"	m	struct:__anon3
 cx	stb_truetype.h	/^      stbtt_vertex_type x,y,cx,cy;$/;"	m	struct:__anon11
 cy	stb_truetype.h	/^      stbtt_vertex_type x,y,cx,cy;$/;"	m	struct:__anon11
 data	stb_truetype.h	/^   unsigned char  * data;              \/\/ pointer to .ttf file$/;"	m	struct:stbtt_fontinfo
+deleteFace	object.cpp	/^void Object::deleteFace(int index) {$/;"	f	class:Object
+deleteObject	modeler.cpp	/^void Modeler::deleteObject(int i) {$/;"	f	class:Modeler
+deleteObject	modeler.cpp	/^void Modeler::deleteObject(string &s) {$/;"	f	class:Modeler
 delete_length	stb_textedit.h	/^   short           delete_length;$/;"	m	struct:__anon1
 direction	stb_truetype.h	/^   float direction;$/;"	m	struct:stbtt__active_edge
 direction	stb_truetype.h	/^   int direction;$/;"	m	struct:stbtt__active_edge
-drawCube	render2d.cpp	/^static void drawCube(float orientation[3], float position[3], float scale[3], float tone) {$/;"	f	file:
+draw	face.cpp	/^void Face::draw() {$/;"	f	class:Face
+draw	modeler.cpp	/^void Modeler::draw() {$/;"	f	class:Modeler
+draw	object.cpp	/^void Object::draw() {$/;"	f	class:Object
+drawAircond	aircond.cpp	/^void drawAircond() {$/;"	f
+drawBox	box.cpp	/^void drawBox() {$/;"	f
+drawComputer	computer.cpp	/^void drawComputer() {$/;"	f
+drawCube	cube.cpp	/^void drawCube() {$/;"	f
 drawCube	render3d.cpp	/^static void drawCube(float orientation[3], float position[3], float scale[3], float tone) {$/;"	f	file:
-drawSphere	render2d.cpp	/^static void drawSphere(double r, int lats, int longs, int x, int y, int z){$/;"	f	file:
+drawDoor	door.cpp	/^void drawDoor() {$/;"	f
+drawELight	emergency_light.cpp	/^void drawELight() {$/;"	f
+drawPowerPlug	power_plug.cpp	/^void drawPowerPlug() {$/;"	f
+drawPress	press.cpp	/^void drawPress() {$/;"	f
+drawQuad	quadro_escrita.cpp	/^void drawQuad() {$/;"	f
+drawScene	renderLab.cpp	/^static void drawScene(AppStateAndEvents &ae, float dT) {$/;"	f	file:
 drawSphere	render3d.cpp	/^static void drawSphere(double r, int lats, int longs, int x, int y, int z){$/;"	f	file:
+drawTable	table.cpp	/^void drawTable() {$/;"	f
+draw_by_bresenham_eq	render2d.cpp	/^static void draw_by_bresenham_eq() {$/;"	f	file:
+draw_by_circle_bresenham	render2d.cpp	/^void draw_by_circle_bresenham(int xm, int ym, int r, int q) {$/;"	f
+draw_by_circle_equation	render2d.cpp	/^void draw_by_circle_equation(int x0, int y0, int radius, int q) {$/;"	f
+draw_by_line_bresenham	render2d.cpp	/^void draw_by_line_bresenham(int x0, int y0, int x1, int y1) {$/;"	f
+draw_by_line_circle_eq	render2d.cpp	/^static void draw_by_line_circle_eq() {$/;"	f	file:
+draw_by_line_equation	render2d.cpp	/^void draw_by_line_equation(int x1, int y1, int x2, int y2) {$/;"	f
+draw_chairs	render2d.cpp	/^bool draw_chairs = false;$/;"	v
+drawlines	render2d.cpp	/^void drawlines() {$/;"	f
 dx	stb_truetype.h	/^   int x,dx;$/;"	m	struct:stbtt__active_edge
 e	imgui.h	/^        const char* e;$/;"	m	struct:ImGuiTextFilter::TextRange
+editing	modeler.h	/^    bool editing;$/;"	m	class:Modeler
 empty	imgui.h	/^        bool empty() const { return b == e; }$/;"	f	struct:ImGuiTextFilter::TextRange
 empty	imgui.h	/^    bool                empty() { return Buf.Size <= 1; }$/;"	f	struct:ImGuiTextBuffer
 empty	imgui.h	/^    inline bool                 empty() const                   { return Size == 0; }$/;"	f	class:ImVector
@@ -1622,8 +1701,10 @@ erase	imgui.h	/^    inline iterator             erase(const_iterator it)        
 error_callback	sdl_main.cpp	/^static void error_callback(int error, const char* description) {$/;"	f	file:
 event	app_state_and_events.h	/^    SDL_Event event;$/;"	m	class:AppStateAndEvents
 event	event.cpp	/^bool event(AppStateAndEvents &ae) {$/;"	f
+exitEditMode	modeler.cpp	/^void Modeler::exitEditMode() {$/;"	f	class:Modeler
 extra	stb_rect_pack.h	/^   stbrp_node extra[2]; \/\/ we allocate two extra nodes so optimal user-node-count is 'width' not 'width+2'$/;"	m	struct:stbrp_context
 ey	stb_truetype.h	/^   float ey;$/;"	m	struct:stbtt__active_edge
+faces	object.h	/^    vector<Face> faces;$/;"	m	class:Object
 faces_count	palace.h	/^unsigned int faces_count[]={110, 38, 1190, 1190, 1190, 1190, 110, 110, 550, 110, 110, 110, 110, 1190, 1190, 1190, 1190, 943, 440};$/;"	v
 faces_count	untitled.h	/^unsigned int faces_count[]={834, 834, 834, 834, 2, 834, 834};$/;"	v
 fdx	stb_truetype.h	/^   float fx,fdx,fdy;$/;"	m	struct:stbtt__active_edge
@@ -1639,15 +1720,24 @@ front	imgui.h	/^    inline const value_type&    front() const                   
 front	imgui.h	/^    inline value_type&          front()                         { IM_ASSERT(Size > 0); return Data[0]; }$/;"	f	class:ImVector
 ftex	stb_truetype.h	/^GLuint ftex;$/;"	v
 fx	stb_truetype.h	/^   float fx,fdx,fdy;$/;"	m	struct:stbtt__active_edge
+gState	render2d.cpp	/^int gState=waitingforclick;$/;"	v
 g_FontTexture	imgui_impl_sdl.cpp	/^static GLuint       g_FontTexture = 0;$/;"	v	file:
 g_MousePressed	imgui_impl_sdl.cpp	/^static bool         g_MousePressed[3] = { false, false, false };$/;"	v	file:
 g_MouseWheel	imgui_impl_sdl.cpp	/^static float        g_MouseWheel = 0.0f;$/;"	v	file:
 g_Time	imgui_impl_sdl.cpp	/^static double       g_Time = 0.0f;$/;"	v	file:
+getAmbientLightParms	app_state_and_events.cpp	/^std::array<GLfloat, 4> &::AppStateAndEvents::getAmbientLightParms() {$/;"	f	class:std::array::AppStateAndEvents
+getCamAngRot	app_state_and_events.cpp	/^float AppStateAndEvents::getCamAngRot() {$/;"	f	class:AppStateAndEvents
 getCameraPos	app_state_and_events.cpp	/^std::array<GLfloat, 3>& AppStateAndEvents::getCameraPos() {$/;"	f	class:AppStateAndEvents
 getCameraTarget	app_state_and_events.cpp	/^std::array<GLfloat, 3>& AppStateAndEvents::getCameraTarget() {$/;"	f	class:AppStateAndEvents
 getEvent	app_state_and_events.cpp	/^SDL_Event &AppStateAndEvents::getEvent() {$/;"	f	class:AppStateAndEvents
+getInstance	modeler.h	/^        static Modeler &getInstance() {$/;"	f	class:Modeler
 getMouseToCamera	app_state_and_events.cpp	/^bool AppStateAndEvents::getMouseToCamera() {$/;"	f	class:AppStateAndEvents
+getNormal	face.cpp	/^vec<float, 3> &Face::getNormal() {$/;"	f	class:Face
+getObjectIndex	modeler.cpp	/^int Modeler::getObjectIndex(string &s) {$/;"	f	class:Modeler
+getStep	app_state_and_events.cpp	/^float AppStateAndEvents::getStep() {$/;"	f	class:AppStateAndEvents
+getTimeInterval	renderLab.cpp	/^float getTimeInterval() {$/;"	f
 glyf	stb_truetype.h	/^   int loca,head,glyf,hhea,hmtx,kern; \/\/ table locations as offset from start of .ttf$/;"	m	struct:stbtt_fontinfo
+grossa	render2d.cpp	/^float grossa = 1.0;$/;"	v
 h	stb_rect_pack.h	/^   stbrp_coord    w, h;$/;"	m	struct:stbrp_rect
 h	stb_truetype.h	/^   int id,w,h,was_packed;$/;"	m	struct:stbrp_rect
 h	stb_truetype.h	/^   int w,h,stride;$/;"	m	struct:__anon12
@@ -1674,13 +1764,17 @@ indices_offset_table	untitled.h	/^unsigned int indices_offset_table []={$/;"	v
 init_mode	stb_rect_pack.h	/^   int init_mode;$/;"	m	struct:stbrp_context
 init_render	render3d.cpp	/^void init_render() {$/;"	f
 init_render2d	render2d.cpp	/^void init_render2d() {$/;"	f
+init_renderLab	renderLab.cpp	/^void init_renderLab() {$/;"	f
 initialized	stb_textedit.h	/^   unsigned char initialized;$/;"	m	struct:__anon3
 insert	imgui.h	/^    inline iterator             insert(const_iterator it, const value_type& v)  { IM_ASSERT(it >= Data && it <= Data+Size); const ptrdiff_t off = it - Data; if (Size == Capacity) reserve(Capacity ? Capacity * 2 : 4); if (off < (int)Size) memmove(Data + off + 1, Data + off, ((size_t)Size - (size_t)off) * sizeof(value_type)); Data[off] = v; Size++; return Data + off; }$/;"	f	class:ImVector
 insert_length	stb_textedit.h	/^   short           insert_length;$/;"	m	struct:__anon1
 insert_mode	stb_textedit.h	/^   unsigned char insert_mode;$/;"	m	struct:__anon3
 invert	stb_truetype.h	/^   int invert;$/;"	m	struct:stbtt__edge
+isEditing	modeler.cpp	/^bool Modeler::isEditing() {$/;"	f	class:Modeler
 isOutdoor	app_state_and_events.cpp	/^bool AppStateAndEvents::isOutdoor() {$/;"	f	class:AppStateAndEvents
+isWire	app_state_and_events.cpp	/^bool AppStateAndEvents::isWire() {$/;"	f	class:AppStateAndEvents
 is_blank	imgui.h	/^        static bool is_blank(char c) { return c == ' ' || c == '\\t'; }$/;"	f	struct:ImGuiTextFilter::TextRange
+is_door_open	ui.cpp	/^bool is_door_open = false;$/;"	v
 is_separator	imgui.cpp	/^static bool is_separator(unsigned int c)                                        { return ImCharIsSpace(c) || c==',' || c==';' || c=='(' || c==')' || c=='{' || c=='}' || c=='[' || c==']' || c=='|'; }$/;"	f	namespace:ImGuiStb
 is_word_boundary	stb_textedit.h	/^static int is_word_boundary( STB_TEXTEDIT_STRING *_str, int _idx )$/;"	f
 is_word_boundary_from_left	imgui.cpp	/^static int  is_word_boundary_from_left(STB_TEXTEDIT_STRING* obj, int idx)       { return idx > 0 ? (!is_separator( obj->Text[idx-1] ) && is_separator( obj->Text[idx] ) ) : 1; }$/;"	f	namespace:ImGuiStb
@@ -1689,19 +1783,33 @@ iterator	imgui.h	/^    typedef value_type*         iterator;$/;"	t	class:ImVecto
 kern	stb_truetype.h	/^   int loca,head,glyf,hhea,hmtx,kern; \/\/ table locations as offset from start of .ttf$/;"	m	struct:stbtt_fontinfo
 key	imgui.h	/^        ImGuiID key;$/;"	m	struct:ImGuiStorage::Pair
 length	stb_textedit.h	/^   int first_char, length; \/\/ first char of row, and length$/;"	m	struct:__anon5
+lineisvalid	render2d.cpp	/^bool lineisvalid=false;$/;"	v
+lines	render2d.cpp	/^point lines[256][2] ;$/;"	v
+loadTex	load_tex.cpp	/^void loadTex() {$/;"	f
+loadTex	working/load_tex.cpp	/^void loadTex() {$/;"	f
+loadTexFromId	load_tex.cpp	/^static void loadTexFromId(unsigned int id, char *filename) {$/;"	f	file:
+loadTexFromId	working/load_tex.cpp	/^static void loadTexFromId(unsigned int id, char *filename) {$/;"	f	file:
+loadTexFromId_	load_tex.cpp	/^static void loadTexFromId_(unsigned int id, char *filename) {$/;"	f	file:
 loca	stb_truetype.h	/^   int loca,head,glyf,hhea,hmtx,kern; \/\/ table locations as offset from start of .ttf$/;"	m	struct:stbtt_fontinfo
 lpwin	render2d.cpp	/^SDL_Window *lpwin = NULL;$/;"	v
 lpwin	render3d.cpp	/^SDL_Window *lpwin = NULL;$/;"	v
+lpwin	renderLab.cpp	/^static SDL_Window *lpwin = NULL;$/;"	v	file:
+m	renderLab.cpp	/^GLuint m = GL_LINE_LOOP;$/;"	v
 main	extra_fonts/binary_to_compressed_c.cpp	/^int main(int argc, char** argv)$/;"	f
 main	sdl_main.cpp	/^int main(int ac, char *av[])$/;"	f
 main	stb_truetype.h	/^int main(int argc, char **argv)$/;"	f
+mouseclick	render2d.cpp	/^void mouseclick(int button, int state,int x, int y) {$/;"	f
+mousedrag	render2d.cpp	/^void mousedrag(int x, int y) {$/;"	f
 my_stbtt_initfont	stb_truetype.h	/^void my_stbtt_initfont(void)$/;"	f
 my_stbtt_print	stb_truetype.h	/^void my_stbtt_print(float x, float y, char *text)$/;"	f
+name	object.h	/^    string name;$/;"	m	class:Object
 next	stb_rect_pack.h	/^   stbrp_node  *next;$/;"	m	struct:stbrp_node
 next	stb_truetype.h	/^   struct stbtt__active_edge *next;$/;"	m	struct:stbtt__active_edge	typeref:struct:stbtt__active_edge::stbtt__active_edge
 next	stb_truetype.h	/^   struct stbtt__hheap_chunk *next;$/;"	m	struct:stbtt__hheap_chunk	typeref:struct:stbtt__hheap_chunk::stbtt__hheap_chunk
 nodes	stb_truetype.h	/^   void  *nodes;$/;"	m	struct:stbtt_pack_context
+normal	face.h	/^    vec<float, 3> normal;$/;"	m	class:Face
 numGlyphs	stb_truetype.h	/^   int numGlyphs;                     \/\/ number of glyphs, needed for range checking$/;"	m	struct:stbtt_fontinfo
+numLines	render2d.cpp	/^int numLines;$/;"	v
 num_chars	stb_textedit.h	/^   int num_chars;$/;"	m	struct:__anon4
 num_chars	stb_truetype.h	/^   int num_chars;$/;"	m	struct:__anon9
 num_nodes	stb_rect_pack.h	/^   int num_nodes;$/;"	m	struct:stbrp_context
@@ -1712,6 +1820,7 @@ ny	palace.h	/^	float nx,ny,nz;$/;"	m	struct:vertex_struct
 ny	untitled.h	/^	float nx,ny,nz;$/;"	m	struct:vertex_struct
 nz	palace.h	/^	float nx,ny,nz;$/;"	m	struct:vertex_struct
 nz	untitled.h	/^	float nx,ny,nz;$/;"	m	struct:vertex_struct
+objects	modeler.h	/^    vector<Object> objects;$/;"	m	class:Modeler
 open_control	ui.cpp	/^static bool open_control = false;$/;"	v	file:
 open_goals	ui.cpp	/^static bool open_goals = false;$/;"	v	file:
 open_help	ui.cpp	/^static bool open_help = false;$/;"	v	file:
@@ -1747,6 +1856,8 @@ pause	render2d.cpp	/^bool pause = true;$/;"	v
 pause	render3d.cpp	/^bool pause = true;$/;"	v
 pixels	stb_truetype.h	/^   unsigned char *pixels;$/;"	m	struct:__anon12
 pixels	stb_truetype.h	/^   unsigned char *pixels;$/;"	m	struct:stbtt_pack_context
+point	render2d.cpp	/^typedef struct point {$/;"	s	file:
+point	render2d.cpp	/^} point;$/;"	t	typeref:struct:point	file:
 pop_back	imgui.h	/^    inline void                 pop_back()                      { IM_ASSERT(Size > 0); Size--; }$/;"	f	class:ImVector
 pos	imgui.h	/^    ImVec2  pos;$/;"	m	struct:ImDrawVert
 preferred_x	stb_textedit.h	/^   float preferred_x; \/\/ this determines where the cursor up\/down tries to seek to along x$/;"	m	struct:__anon3
@@ -1754,6 +1865,7 @@ prev_first	stb_textedit.h	/^   int prev_first;  \/\/ first char of previous row$
 prev_link	stb_rect_pack.h	/^   stbrp_node **prev_link;$/;"	m	struct:__anon24
 proggy_clean_ttf_compressed_data_base85	imgui_draw.cpp	/^static const char proggy_clean_ttf_compressed_data_base85[11980+1] =$/;"	v	file:
 push_back	imgui.h	/^    inline void                 push_back(const value_type& v)  { if (Size == Capacity) reserve(_grow_capacity(Size+1)); Data[Size++] = v; }$/;"	f	class:ImVector
+raotate	face.cpp	/^void Face::raotate(float x, float y, float z) {$/;"	f	class:Face
 rect_height_compare	stb_rect_pack.h	/^static int rect_height_compare(const void *a, const void *b)$/;"	f
 rect_original_order	stb_rect_pack.h	/^static int rect_original_order(const void *a, const void *b)$/;"	f
 rect_width_compare	stb_rect_pack.h	/^static int rect_width_compare(const void *a, const void *b)$/;"	f
@@ -1761,22 +1873,34 @@ redo_char_point	stb_textedit.h	/^   short undo_char_point, redo_char_point;$/;"	
 redo_point	stb_textedit.h	/^   short undo_point, redo_point;$/;"	m	struct:__anon2
 render	render3d.cpp	/^void render(SDL_Window *win, AppStateAndEvents &ae) {$/;"	f
 render2d	render2d.cpp	/^void render2d(SDL_Window *win, AppStateAndEvents &ae) {$/;"	f
+renderLab	renderLab.cpp	/^void renderLab(SDL_Window *win, AppStateAndEvents &ae) {$/;"	f
 reserve	imgui.h	/^    inline void                 reserve(int new_capacity)$/;"	f	class:ImVector
 resetIndoorView	app_state_and_events.cpp	/^void AppStateAndEvents::resetIndoorView() {$/;"	f	class:AppStateAndEvents
 resetOutdoorView	app_state_and_events.cpp	/^void AppStateAndEvents::resetOutdoorView() {$/;"	f	class:AppStateAndEvents
 resize	imgui.h	/^    inline void                 resize(int new_size)            { if (new_size > Capacity) reserve(_grow_capacity(new_size)); Size = new_size; }$/;"	f	class:ImVector
-rotateCube	render2d.cpp	/^float rotateCube = 0; \/\/ Apply rotation on cube$/;"	v
+rotate	object.cpp	/^void Object::rotate(int index) {$/;"	f	class:Object
 rotateCube	render3d.cpp	/^float rotateCube = 0; \/\/ Apply rotation on cube$/;"	v
 rotateSpeed	render2d.cpp	/^float rotateSpeed = 180.0f; \/* degrees per second *\/$/;"	v
 rotateSpeed	render3d.cpp	/^float rotateSpeed = 180.0f; \/* degrees per second *\/$/;"	v
+rotateSpeed	renderLab.cpp	/^float rotateSpeed = 180.0f; \/* degrees per second *\/$/;"	v
 s0	stb_truetype.h	/^   float x0,y0,s0,t0; \/\/ top-left$/;"	m	struct:__anon7
 s1	stb_truetype.h	/^   float x1,y1,s1,t1; \/\/ bottom-right$/;"	m	struct:__anon7
+scale	face.cpp	/^void Face::scale(float x, float y) {$/;"	f	class:Face
+selectObject	modeler.cpp	/^void Modeler::selectObject(int i) {$/;"	f	class:Modeler
 select_end	stb_textedit.h	/^   int select_end;$/;"	m	struct:__anon3
 select_start	stb_textedit.h	/^   int select_start;          \/\/ selection start point$/;"	m	struct:__anon3
+setAmbientLightParms	app_state_and_events.cpp	/^void AppStateAndEvents::setAmbientLightParms(std::array<GLfloat, 4> &b) {$/;"	f	class:AppStateAndEvents
+setCamAngRot	app_state_and_events.cpp	/^void AppStateAndEvents::setCamAngRot(float a) {$/;"	f	class:AppStateAndEvents
 setCameraPos	app_state_and_events.cpp	/^void AppStateAndEvents::setCameraPos(std::array<GLfloat, 3> &f) {$/;"	f	class:AppStateAndEvents
 setCameraTarget	app_state_and_events.cpp	/^void AppStateAndEvents::setCameraTarget(std::array<GLfloat, 3> &f) {$/;"	f	class:AppStateAndEvents
+setEditObject	modeler.cpp	/^void Modeler::setEditObject(string &s) {$/;"	f	class:Modeler
 setIsOutdoor	app_state_and_events.cpp	/^void AppStateAndEvents::setIsOutdoor(bool b) {$/;"	f	class:AppStateAndEvents
+setMode	face.cpp	/^void Face::setMode(ModeDraw m) {$/;"	f	class:Face
+setMode	object.cpp	/^void Object::setMode(ModeDraw m) {$/;"	f	class:Object
 setMouseToCamera	app_state_and_events.cpp	/^void AppStateAndEvents::setMouseToCamera(bool b) {$/;"	f	class:AppStateAndEvents
+setStep	app_state_and_events.cpp	/^void AppStateAndEvents::setStep(float f) {$/;"	f	class:AppStateAndEvents
+setUpOpenGL	renderLab.cpp	/^void setUpOpenGL() {$/;"	f
+setWire	app_state_and_events.cpp	/^void AppStateAndEvents::setWire(bool f) {$/;"	f	class:AppStateAndEvents
 single_line	stb_textedit.h	/^   unsigned char single_line;$/;"	m	struct:__anon3
 size	imgui.h	/^    inline int                  size() const                    { return Size; }$/;"	f	class:ImVector
 size	imgui.h	/^    int                 size() const { return Buf.Size - 1; }$/;"	f	struct:ImGuiTextBuffer
@@ -1784,6 +1908,8 @@ snprintf	imgui.cpp	593;"	d	file:
 snprintf	imgui_demo.cpp	25;"	d	file:
 snprintf	imgui_draw.cpp	32;"	d	file:
 split	imgui.cpp	/^void ImGuiTextFilter::TextRange::split(char separator, ImVector<TextRange>& out)$/;"	f	class:ImGuiTextFilter::TextRange
+state	render2d.cpp	/^typedef enum state {$/;"	g	file:
+state	render2d.cpp	/^} state;$/;"	t	typeref:enum:state	file:
 stb__barrier	imgui_draw.cpp	/^static unsigned char *stb__barrier, *stb__barrier2, *stb__barrier3, *stb__barrier4;$/;"	v	file:
 stb__barrier2	imgui_draw.cpp	/^static unsigned char *stb__barrier, *stb__barrier2, *stb__barrier3, *stb__barrier4;$/;"	v	file:
 stb__barrier3	imgui_draw.cpp	/^static unsigned char *stb__barrier, *stb__barrier2, *stb__barrier3, *stb__barrier4;$/;"	v	file:
@@ -1974,15 +2100,23 @@ stbtt_uint32	stb_truetype.h	/^   typedef unsigned int    stbtt_uint32;$/;"	t
 stbtt_uint8	stb_truetype.h	/^   typedef unsigned char   stbtt_uint8;$/;"	t
 stbtt_vertex	stb_truetype.h	/^   } stbtt_vertex;$/;"	t	typeref:struct:__anon11
 stbtt_vertex_type	stb_truetype.h	733;"	d
+step	app_state_and_events.h	/^    float step;$/;"	m	class:AppStateAndEvents
 stride	stb_truetype.h	/^   int w,h,stride;$/;"	m	struct:__anon12
 stride_in_bytes	stb_truetype.h	/^   int   stride_in_bytes;$/;"	m	struct:stbtt_pack_context
 swap	imgui.h	/^    inline void                 swap(ImVector<T>& rhs)          { int rhs_size = rhs.Size; rhs.Size = Size; Size = rhs_size; int rhs_cap = rhs.Capacity; rhs.Capacity = Capacity; Capacity = rhs_cap; value_type* rhs_data = rhs.Data; rhs.Data = Data; Data = rhs_data; }$/;"	f	class:ImVector
 sy	stb_truetype.h	/^   float sy;$/;"	m	struct:stbtt__active_edge
 t	render2d.cpp	/^float t, T = 0.0;$/;"	v
 t	render3d.cpp	/^float t, T = 0.0;$/;"	v
+t	renderLab.cpp	/^float t, T = 0.0;$/;"	v
 t0	stb_truetype.h	/^   float x0,y0,s0,t0; \/\/ top-left$/;"	m	struct:__anon7
 t1	stb_truetype.h	/^   float x1,y1,s1,t1; \/\/ bottom-right$/;"	m	struct:__anon7
 temp_bitmap	stb_truetype.h	/^unsigned char temp_bitmap[512*512];$/;"	v
+tex1	ui.cpp	/^char tex1[120] = "T1_2.png";$/;"	v
+tex2	ui.cpp	/^char tex2[120] = "blocks.png";$/;"	v
+tex3	ui.cpp	/^char tex3[120];$/;"	v
+tex4	ui.cpp	/^char tex4[120];$/;"	v
+tex5	ui.cpp	/^char tex5[120];$/;"	v
+tex6	ui.cpp	/^char tex6[120];$/;"	v
 transformations	palace.h	/^float transformations[][16]={$/;"	v
 transformations	untitled.h	/^float transformations[][16]={$/;"	v
 trim_blanks	imgui.h	/^        void trim_blanks() { while (b < e && is_blank(*b)) b++; while (e > b && is_blank(*(e-1))) e--; }$/;"	f	struct:ImGuiTextFilter::TextRange
@@ -2008,6 +2142,7 @@ undo_char_point	stb_textedit.h	/^   short undo_char_point, redo_char_point;$/;"	
 undo_point	stb_textedit.h	/^   short undo_point, redo_point;$/;"	m	struct:__anon2
 undo_rec	stb_textedit.h	/^   StbUndoRecord          undo_rec [STB_TEXTEDIT_UNDOSTATECOUNT];$/;"	m	struct:__anon2
 undostate	stb_textedit.h	/^   StbUndoState undostate;$/;"	m	struct:__anon3
+update_lighting	renderLab.cpp	/^static void update_lighting(AppStateAndEvents &ae) {$/;"	f	file:
 user_allocator_context	stb_truetype.h	/^   void *user_allocator_context;$/;"	m	struct:stbtt_pack_context
 userdata	stb_truetype.h	/^   void           * userdata;$/;"	m	struct:stbtt_fontinfo
 uv	imgui.h	/^    ImVec2  uv;$/;"	m	struct:ImDrawVert
@@ -2027,6 +2162,7 @@ vertex_offset_table	palace.h	/^unsigned int vertex_offset_table []={$/;"	v
 vertex_offset_table	untitled.h	/^unsigned int vertex_offset_table []={$/;"	v
 vertex_struct	palace.h	/^struct vertex_struct {$/;"	s
 vertex_struct	untitled.h	/^struct vertex_struct {$/;"	s
+vertices	face.h	/^    vec<float, 3> vertices[4];$/;"	m	class:Face
 vertices	palace.h	/^struct vertex_struct vertices[]={$/;"	v	typeref:struct:vertex_struct
 vertices	untitled.h	/^struct vertex_struct vertices[]={$/;"	v	typeref:struct:vertex_struct
 vinx	func.h	/^GLuint *vinx;$/;"	v
@@ -2034,6 +2170,7 @@ w	imgui.h	/^    float x, y, z, w;$/;"	m	struct:ImVec4
 w	stb_rect_pack.h	/^   stbrp_coord    w, h;$/;"	m	struct:stbrp_rect
 w	stb_truetype.h	/^   int id,w,h,was_packed;$/;"	m	struct:stbrp_rect
 w	stb_truetype.h	/^   int w,h,stride;$/;"	m	struct:__anon12
+waitingforclick	render2d.cpp	/^    waitingforclick,$/;"	e	enum:state	file:
 was_packed	stb_rect_pack.h	/^   int            was_packed;  \/\/ non-zero if valid packing$/;"	m	struct:stbrp_rect
 was_packed	stb_truetype.h	/^   int id,w,h,was_packed;$/;"	m	struct:stbrp_rect
 where	stb_textedit.h	/^   STB_TEXTEDIT_POSITIONTYPE  where;$/;"	m	struct:__anon1
@@ -2042,9 +2179,12 @@ width	stb_truetype.h	/^   int   width;$/;"	m	struct:stbtt_pack_context
 width	stb_truetype.h	/^   int width,height;$/;"	m	struct:__anon20
 windowheight	sdl_main.cpp	/^int windowheight;$/;"	v
 windowwidth	sdl_main.cpp	/^int windowwidth;$/;"	v
+wire	app_state_and_events.cpp	/^AppStateAndEvents::AppStateAndEvents(): MouseToCamera{false}, camera_pos{0, 0, 20}, camera_target{0, 0, -300}, outdoor{true}, step(0.4), wire(false) {$/;"	f
+wire	app_state_and_events.h	/^    bool wire;$/;"	m	class:AppStateAndEvents
 x	imgui.h	/^    float x, y, z, w;$/;"	m	struct:ImVec4
 x	imgui.h	/^    float x, y;$/;"	m	struct:ImVec2
 x	palace.h	/^	float x,y,z;$/;"	m	struct:vertex_struct
+x	render2d.cpp	/^    int x;$/;"	m	struct:point	file:
 x	stb_rect_pack.h	/^   int x,y;$/;"	m	struct:__anon24
 x	stb_rect_pack.h	/^   stbrp_coord    x, y;$/;"	m	struct:stbrp_rect
 x	stb_rect_pack.h	/^   stbrp_coord  x,y;$/;"	m	struct:stbrp_node
@@ -2074,6 +2214,7 @@ xoff2	stb_truetype.h	/^   float xoff2,yoff2;$/;"	m	struct:__anon8
 y	imgui.h	/^    float x, y, z, w;$/;"	m	struct:ImVec4
 y	imgui.h	/^    float x, y;$/;"	m	struct:ImVec2
 y	palace.h	/^	float x,y,z;$/;"	m	struct:vertex_struct
+y	render2d.cpp	/^    int y;$/;"	m	struct:point	file:
 y	stb_rect_pack.h	/^   int x,y;$/;"	m	struct:__anon24
 y	stb_rect_pack.h	/^   stbrp_coord    x, y;$/;"	m	struct:stbrp_rect
 y	stb_rect_pack.h	/^   stbrp_coord  x,y;$/;"	m	struct:stbrp_node
@@ -2101,6 +2242,7 @@ z	palace.h	/^	float x,y,z;$/;"	m	struct:vertex_struct
 z	untitled.h	/^	float x,y,z;$/;"	m	struct:vertex_struct
 ~AppStateAndEvents	app_state_and_events.cpp	/^AppStateAndEvents::~AppStateAndEvents() {$/;"	f	class:AppStateAndEvents
 ~ExampleAppConsole	imgui_demo.cpp	/^    ~ExampleAppConsole()$/;"	f	struct:ExampleAppConsole
+~Face	face.cpp	/^Face::~Face() {$/;"	f	class:Face
 ~ImDrawList	imgui.h	/^    ~ImDrawList() { ClearFreeMemory(); }$/;"	f	struct:ImDrawList
 ~ImFont	imgui_draw.cpp	/^ImFont::~ImFont()$/;"	f	class:ImFont
 ~ImFontAtlas	imgui_draw.cpp	/^ImFontAtlas::~ImFontAtlas()$/;"	f	class:ImFontAtlas
@@ -2108,3 +2250,5 @@ z	untitled.h	/^	float x,y,z;$/;"	m	struct:vertex_struct
 ~ImGuiTextFilter	imgui.h	/^    ~ImGuiTextFilter() {}$/;"	f	struct:ImGuiTextFilter
 ~ImGuiWindow	imgui.cpp	/^ImGuiWindow::~ImGuiWindow()$/;"	f	class:ImGuiWindow
 ~ImVector	imgui.h	/^    ~ImVector()                 { if (Data) ImGui::MemFree(Data); }$/;"	f	class:ImVector
+~Modeler	modeler.cpp	/^Modeler::~Modeler() {$/;"	f	class:Modeler
+~Object	object.cpp	/^Object::~Object() {$/;"	f	class:Object

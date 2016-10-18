@@ -84,7 +84,7 @@ static void loadTexFromId(unsigned int id, char *filename) {
 }
 
 void loadTex() {
-    glGenTextures(2, texture_id);
+    glGenTextures(4, texture_id);
     loadTexFromId(DOOR, tex1);
     loadTexFromId(WALL_OUT, tex2);
 //     loadTexFromId(COMPUTER, tex3);

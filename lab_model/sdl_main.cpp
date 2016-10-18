@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <array>
+#include "load_tex.h"
 
 using namespace std;
 using namespace Magick;
@@ -27,8 +28,8 @@ int windowheight;
 
 #define MAX_NO_TEXTURES 16
 // GLuint texture_id[MAX_NO_TEXTURES]; // vetor com os números das texturas
-GLuint texture_id; // vetor com os números das texturas
-GLuint texture_id_1; // vetor com os números das texturas
+
+extern GLuint  texture_id[TEX_NUMBER];
 
 static void error_callback(int error, const char* description) {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -78,15 +79,14 @@ int main(int ac, char *av[])
     // glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
     // Definir quantas texturas serão usadas no programa
-    glGenTextures (1, &texture_id);  // 1 = uma textura;
-                                    // texture_id = vetor que guarda os números das texturas
-
+    // glGenTextures (1, &texture_id);  // 1 = uma textura;
+                                     // texture_id = vetor que guarda os números das texturas
     // Definr o número da textura do cubo.
     // texture_id[0] = 1001;
     // texture_id[1] = 1002;
 
     // Define a textura corrente
-    glBindTexture(GL_TEXTURE_2D, texture_id);
+    // glBindTexture(GL_TEXTURE_2D, texture_id);
     // glBindTexture(GL_TEXTURE_2D, texture_id[1]);
                 // GL_TEXTURE_2D ==> define que será usada uma textura 2D (bitmaps)
                 // texture_id[CUBE_TEXTURE]  ==> define o número da textura
@@ -110,14 +110,15 @@ int main(int ac, char *av[])
         ui(ae);
         // render(window, ae);
         // glEnable(GL_LIGHTING);
-        renderLab(window, ae);
         // glDisable(GL_LIGHTING);
 
-        glPushMatrix();
+        renderLab(window, ae);
+
+        // glPushMatrix();
         glPushAttrib(GL_ALL_ATTRIB_BITS);
         ImGui::Render();
         glPopAttrib();
-        glPopMatrix();
+        // glPopMatrix();
 
         SDL_GL_SwapWindow(window);
     }
@@ -130,4 +131,5 @@ int main(int ac, char *av[])
 
     return 0;
 }
+
 

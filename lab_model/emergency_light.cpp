@@ -5,7 +5,7 @@
 #include "load_tex.h"
 
 extern GLuint  texture_id[TEX_NUMBER];
-void drawDoor() {
+void drawELight() {
     extern bool is_door_open;
 
     glPushMatrix();

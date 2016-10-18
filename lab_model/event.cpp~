@@ -1,4 +1,5 @@
 #include <GL/gl.h>
+#include <GL/glu.h>
 #include <SDL2/SDL.h>
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
@@ -7,6 +8,7 @@
 #include "render2d.h"
 
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -32,11 +34,13 @@ bool event(AppStateAndEvents &ae) {
             }
             if (event.key.keysym.sym == SDLK_a) {
                 std::array<GLfloat, 3> v = ae.getCameraPos();
+                // v[0] -= sin(ae.getStep());
                 v[1] -= ae.getStep();
                 ae.setCameraPos(v);
             }
             if (event.key.keysym.sym == SDLK_d) {
                 std::array<GLfloat, 3> v = ae.getCameraPos();
+                // v[0] += sin(ae.getStep());
                 v[1] += ae.getStep();
                 ae.setCameraPos(v);
             }
@@ -46,15 +50,29 @@ bool event(AppStateAndEvents &ae) {
                 ae.setMouseToCamera(!ae.getMouseToCamera());
             }
 
+            if (event.key.keysym.sym == SDLK_r) {
+                std::array<GLfloat, 3> v1{0, 6, 4}, v2{0, 0, -300} ;
+                ae.setCameraPos(v1);
+                ae.setCameraTarget(v2);
+            }
         }
 
         if(ae.getMouseToCamera() && event.type == SDL_MOUSEWHEEL) {
             std::array<GLfloat, 3> v = ae.getCameraPos();
-            v[1] +=  (event.wheel.y * ae.getStep());
+            v[1] += (event.wheel.y * ae.getStep());
             ae.setCameraPos(v);
         }
+
+        if(ae.getMouseToCamera() && event.type == SDL_MOUSEMOTION) {
+            std::array<GLfloat, 3> v = ae.getCameraTarget();
+            v[0] += (event.motion.xrel * ae.getStep());
+            // v[1] += (event.motion.yrel * ae.getStep());
+            ae.setCameraTarget(v);
+        }
+
     }
 
     return false;
 }
+
 

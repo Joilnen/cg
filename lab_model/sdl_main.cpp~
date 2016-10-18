@@ -8,24 +8,28 @@
 #include "imgui_impl_sdl.h"
 #include <stdio.h>
 #include <math.h>
-// #include "untitled.h"
 #include "render2d.h"
+#include "render3d.h"
 #include "renderLab.h"
 #include "event.h"
 #include "ui.h"
 #include "app_state_and_events.h"
-#include "tgaload.h"
+#include <Magick++.h>
 
 #include <iostream>
 #include <array>
+#include "load_tex.h"
 
 using namespace std;
+using namespace Magick;
 
 int windowwidth;
 int windowheight;
 
 #define MAX_NO_TEXTURES 16
-GLuint texture_id[MAX_NO_TEXTURES]; // vetor com os números das texturas
+// GLuint texture_id[MAX_NO_TEXTURES]; // vetor com os números das texturas
+
+extern GLuint  texture_id[TEX_NUMBER];
 
 static void error_callback(int error, const char* description) {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -66,58 +70,56 @@ int main(int ac, char *av[])
     ImVec4 clear_color = ImColor(114, 144, 154, 0);
 
     glEnable(GL_DEPTH_TEST); // Depth Testing
-    // glEnable(GL_PROGRAM_POINT_SIZE); // Depth Testing
+    glEnable(GL_PROGRAM_POINT_SIZE); // Depth Testing
     glDepthFunc(GL_LEQUAL);
-    glDisable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
-
-    // Habilitar o uso de texturas
-    glEnable(GL_TEXTURE_2D);
+    // glDisable(GL_CULL_FACE);
+    // glCullFace(GL_BACK);
 
     // Definir a forma de armazenamento dos pixels na textura (1= alinhamento por byte)
-    glPixelStorei ( GL_UNPACK_ALIGNMENT, 1 );
+    // glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
     // Definir quantas texturas serão usadas no programa
-    glGenTextures (2, texture_id);  // 1 = uma textura;
-                                    // texture_id = vetor que guarda os números das texturas
-
+    // glGenTextures (1, &texture_id);  // 1 = uma textura;
+                                     // texture_id = vetor que guarda os números das texturas
     // Definr o número da textura do cubo.
-    texture_id[0] = 1001;
-    texture_id[1] = 1002;
+    // texture_id[0] = 1001;
+    // texture_id[1] = 1002;
 
     // Define a textura corrente
-    glBindTexture(GL_TEXTURE_2D, texture_id[0]);
-    glBindTexture(GL_TEXTURE_2D, texture_id[1]);
+    // glBindTexture(GL_TEXTURE_2D, texture_id);
+    // glBindTexture(GL_TEXTURE_2D, texture_id[1]);
                 // GL_TEXTURE_2D ==> define que será usada uma textura 2D (bitmaps)
                 // texture_id[CUBE_TEXTURE]  ==> define o número da textura
 
-    // carrega a uma imagem TGA
-    image_t temp_image;
-    tgaLoad  ("T1.tga", &temp_image, TGA_FREE | TGA_LOW_QUALITY); 
-    tgaLoad  ("T2.tga", &temp_image, TGA_FREE | TGA_LOW_QUALITY); 
+    // carrega a uma imagem
+    InitializeMagick(*av);
 
     float rotateCube = 0; // Apply rotation on cube
+    // init_render();
     // init_render2d();
+    init_renderLab();
     AppStateAndEvents ae;
-    std::array<GLfloat, 3> v({0, 6, 4});
+    std::array<GLfloat, 3> v({0, 6, 400});
     ae.setCameraPos(v);
     // Main loop
     bool done = false;
-    setUpOpenGL()
-    for (;!done;) {
+    glGenTextures(TEX_NUMBER, texture_id);
 
+    while(!done) {
         ImGui_ImplSdl_NewFrame(window);
         done = event(ae);
         ui(ae);
-        // render2d(window, ae);
-        // render2d(window, ae);
+        // render(window, ae);
+        // glEnable(GL_LIGHTING);
+        // glDisable(GL_LIGHTING);
+
         renderLab(window, ae);
 
-        glPushMatrix();
+        // glPushMatrix();
         glPushAttrib(GL_ALL_ATTRIB_BITS);
         ImGui::Render();
         glPopAttrib();
-        glPopMatrix();
+        // glPopMatrix();
 
         SDL_GL_SwapWindow(window);
     }
@@ -130,4 +132,5 @@ int main(int ac, char *av[])
 
     return 0;
 }
+
 

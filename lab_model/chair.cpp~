@@ -1,0 +1,23 @@
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include "chair.h"
+#include "cube.h"
+
+void drawPress() {
+    extern float col_aircond[3];
+    extern GLuint m;
+
+    glColor3f(col_aircond[0], col_aircond[1], col_aircond[2]);
+
+    // Cadeira
+    glPushMatrix();
+
+    glTranslatef(0, 0, 0);
+    glScalef(50, 50, 50);
+    glRotatef(90, 1, 0, 0);
+    drawCube();
+
+    glPopMatrix();
+}
+
+

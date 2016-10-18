@@ -28,6 +28,7 @@
 #include "box.h"
 #include "aircond.h"
 #include "press.h"
+#include "app_state_and_events.h"
 
 #define HM glColor3f(1, 0, 0); \
            glBegin(GL_LINES); \
@@ -36,6 +37,7 @@
                glVertex3f(0, -5, 0); \
                glVertex3f(0, 5, 0); \
            glEnd()
+
 // GLuint m = GL_LINE_LOOP;
 GLuint m = GL_LINE_LOOP;
 
@@ -69,8 +71,7 @@ math::Vec3f windowToObjectf(const math::Vec3f& windowCoord) {
 ****/
 
 static void drawScene(AppStateAndEvents &ae, float dT) {
-    static float angle = 180.0f;
-    // glClearColor(0.0, 0.0, 0.0, 0);
+
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -83,6 +84,12 @@ static void drawScene(AppStateAndEvents &ae, float dT) {
         ae.getCameraTarget()[0], ae.getCameraTarget()[1], ae.getCameraTarget()[2],
         0, 0, 1
     );
+
+    // gluLookAt(
+    //     ae.getCameraPos()[0], ae.getCameraPos()[1], ae.getCameraPos()[2],
+    //     ae.getCameraTarget()[0], ae.getCameraTarget()[1], ae.getCameraTarget()[2],
+    //     0, 0, 1
+    // );
 
     // glLoadIdentity();
     HM;
@@ -107,17 +114,39 @@ void setUpOpenGL() {
         windowwidth = 1024; windowheight = 600;
     GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
     GLfloat mat_shininess[] = {50.0};
-    GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0};
-    GLfloat ambient_light[] = {.2, .2, .2, 1.0};
+    GLfloat light_position[] = {.5, .5, .0, 0.0};
+    GLfloat diffuse_light[] = {1.0, 1.0, 1.0, 1.0};
+    GLfloat ambient_light[] = {20, 20, 20, 1.0};
 
+    glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+    glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    AppStateAndEvents ae;
+
+    ambient_light[0] = ae.getAmbientLightParms()[0];
+    ambient_light[1] = ae.getAmbientLightParms()[1];
+    ambient_light[2] = ae.getAmbientLightParms()[2];
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient_light);
+
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse_light);
+    glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1);
+    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, .0);
+    glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, .0);
+
+    glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
+    // glColorMaterial(GL_FRONT_AND_BACK, GL_EMISSION ) ;
+    // glEnable(GL_COLOR_MATERIAL) ;
+    glShadeModel(GL_SMOOTH);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(512, 512,  300, 300, 10, 10);
     glViewport(0, 0, windowwidth, windowheight);
 
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+    glHint(GL_LINE_SMOOTH_HINT,GL_NICEST);
 
     loadTex();
+    glEnable(GL_LIGHT0);
+    glEnable(GL_DEPTH_TEST);
 }
 
 float getTimeInterval() {
@@ -144,6 +173,14 @@ void init_renderLab() {
     getTimeInterval();
 }
 
+static void update_lighting(AppStateAndEvents &ae) {
+    GLfloat ambient_light[4];
+    ambient_light[0] = ae.getAmbientLightParms()[0];
+    ambient_light[1] = ae.getAmbientLightParms()[1];
+    ambient_light[2] = ae.getAmbientLightParms()[2];
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient_light);
+}
+
 float t, T = 0.0;
 void renderLab(SDL_Window *win, AppStateAndEvents &ae) {
     // Rendering
@@ -165,7 +202,10 @@ void renderLab(SDL_Window *win, AppStateAndEvents &ae) {
     glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    glEnable(GL_LIGHTING);
+    update_lighting(ae);
     drawScene(ae, t);
+    glDisable(GL_LIGHTING);
 }
 
 

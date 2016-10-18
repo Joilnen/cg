@@ -13,6 +13,9 @@ class AppStateAndEvents {
     bool outdoor;
     float step;
     bool wire;
+    std::array<GLfloat, 4> ambient_light{{0, 0, 0, 1}};
+    float ang{0};
+
     public:
         AppStateAndEvents();
         ~AppStateAndEvents();
@@ -36,6 +39,14 @@ class AppStateAndEvents {
         void resetIndoorView();
         bool isOutdoor();
         void setIsOutdoor(bool);
+
+        void setAmbientLightParms(std::array<GLfloat, 4> &b);
+        std::array<GLfloat, 4> &getAmbientLightParms();
+
+        void setCamAngRot(float a);
+        float getCamAngRot();
 };
 
 #endif
+
+

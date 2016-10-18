@@ -50,6 +50,7 @@ void DrawScene(AppStateAndEvents &ae, float dT) {
     );
 
     glPushMatrix();
+    glLoadIdentity();
     SetUpLights();
     glPopMatrix();
 
@@ -147,7 +148,7 @@ static void drawCube(float orientation[3], float position[3], float scale[3], fl
         glRotatef(orientation[2], 0, 0, 1);
         glTranslatef(position[0], position[1], position[2]);
         glScalef(scale[0], scale[1], scale[2]);
-        
+ 
         //We have a color array and a vertex array 
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);

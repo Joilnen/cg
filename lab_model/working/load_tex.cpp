@@ -10,45 +10,8 @@ using namespace Magick;
 using namespace std;
 
 GLuint texture_id[TEX_NUMBER];
-extern char tex1[], tex2[];
-extern char tex3[], tex4[];
-static void loadTexFromId_(unsigned int id, char *filename) {
-    Image imTex;
-
-    unsigned char *dataTex = nullptr;
-
-    try {
-        imTex.magick("PNG");
-        imTex.read(filename);
-
-        int w = imTex.columns();
-        int h = imTex.rows();
-
-        dataTex = new unsigned char[w * 4 * h];
-        imTex.write(0, 0, w, h, "RGBA", CharPixel, dataTex);
-        gluBuild2DMipmaps(GL_TEXTURE_2D, 3, w, h, GL_RGBA, GL_UNSIGNED_BYTE, dataTex);
-        glBindTexture(GL_TEXTURE_2D, texture_id[id]);
-
-        if(dataTex) {
-            // glTexImage2D(GL_TEXTURE_2D, 0, 1,
-            //           imTex.columns(), imTex.rows(), 0,
-            //           GL_RGBA8, GL_UNSIGNED_BYTE, dataTex);
-
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-            // glActiveTexture(texture_id[DOOR]);
-            std::cout << "Carregou textura\n";
-            delete dataTex;
-        }
-    }
-    catch(...) {
-
-    }
-}
 
 static void loadTexFromId(unsigned int id, char *filename) {
-    // loadTexFromId(DOOR, "T1_2.png");
-    // loadTexFromId(WALL_OUT, "blocks.png");
     Image imTex;
 
     unsigned char *dataTex = nullptr;
@@ -63,7 +26,6 @@ static void loadTexFromId(unsigned int id, char *filename) {
         dataTex = new unsigned char[w * 4 * h];
         imTex.write(0, 0, w, h, "RGBA", CharPixel, dataTex);
         gluBuild2DMipmaps(GL_TEXTURE_2D, 3, w, h, GL_RGBA, GL_UNSIGNED_BYTE, dataTex);
-        // glGenTextures(2, texture_id);
         glBindTexture(GL_TEXTURE_2D, texture_id[id]);
 
         if(dataTex) {
@@ -84,11 +46,68 @@ static void loadTexFromId(unsigned int id, char *filename) {
 }
 
 void loadTex() {
-    glGenTextures(2, texture_id);
-    loadTexFromId(DOOR, tex1);
-    loadTexFromId(WALL_OUT, tex2);
-//     loadTexFromId(COMPUTER, tex3);
-//     loadTexFromId(CORTINA, tex4);
+    // loadTexFromId(DOOR, "T1_2.png");
+    // loadTexFromId(WALL_OUT, "blocks.png");
+    Image imTex;
+
+    unsigned char *dataTex = nullptr;
+
+    try {
+        imTex.magick("PNG");
+        imTex.read("T1_2.png");
+
+        int w = imTex.columns();
+        int h = imTex.rows();
+
+        dataTex = new unsigned char[w * 4 * h];
+        imTex.write(0, 0, w, h, "RGBA", CharPixel, dataTex);
+        gluBuild2DMipmaps(GL_TEXTURE_2D, 3, w, h, GL_RGBA, GL_UNSIGNED_BYTE, dataTex);
+        glGenTextures(2, texture_id);
+        glBindTexture(GL_TEXTURE_2D, texture_id[DOOR]);
+
+        if(dataTex) {
+            // glTexImage2D(GL_TEXTURE_2D, 0, 1,
+            //           imTex.columns(), imTex.rows(), 0,
+            //           GL_RGBA8, GL_UNSIGNED_BYTE, dataTex);
+
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            // glActiveTexture(texture_id[DOOR]);
+            std::cout << "Carregou textura\n";
+            delete dataTex;
+        }
+    }
+    catch(...) {
+
+    }
+
+    try {
+        imTex.magick("PNG");
+        imTex.read("blocks.png");
+
+        int w = imTex.columns();
+        int h = imTex.rows();
+
+        dataTex = new unsigned char[w * 4 * h];
+        imTex.write(0, 0, w, h, "RGBA", CharPixel, dataTex);
+        gluBuild2DMipmaps(GL_TEXTURE_2D, 3, w, h, GL_RGBA, GL_UNSIGNED_BYTE, dataTex);
+        glBindTexture(GL_TEXTURE_2D, texture_id[WALL_OUT]);
+
+        if(dataTex) {
+            // glTexImage2D(GL_TEXTURE_2D, 0, 1,
+            //           imTex.columns(), imTex.rows(), 0,
+            //           GL_RGBA8, GL_UNSIGNED_BYTE, dataTex);
+
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            // glActiveTexture(texture_id[DOOR]);
+            std::cout << "Carregou textura\n";
+            delete dataTex;
+        }
+    }
+    catch(...) {
+
+    }
 }
 
 

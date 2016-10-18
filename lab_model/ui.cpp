@@ -2,6 +2,7 @@
 #include "ui.h"
 #include "event.h"
 #include "app_state_and_events.h"
+#include "load_tex.h"
 #include <iostream>
 
 using namespace std;
@@ -67,11 +68,19 @@ float col2[3] = { 1.0f,0.8f,0.2f };
 float col_computer[3] = { 1.0f,0.4f,0.7f };
 float col_table[3] = { 0.3f,0.4f,0.7f };
 float col_aircond[3] = { 0.3f,0.2f,0.0f };
+float amb_light;
+
 bool is_door_open = false;
+char tex1[120] = "T1_2.png";
+char tex2[120] = "blocks.png";
+char tex3[120] = "computer.jpg";
+char tex4[120] = "cortina.jpg";
+char tex5[120];
+char tex6[120];
+
 void ShowControl(bool* opened, AppStateAndEvents &ae) {
 
     ImVec2 size = ImGui::GetItemRectSize();
-
     float step = ae.getStep();
     ImGui::Begin("Controler",  opened);
         ImGui::Text("General");
@@ -90,15 +99,32 @@ void ShowControl(bool* opened, AppStateAndEvents &ae) {
                 ae.setWire(false);
 
         ImGui::Text("Passo");
-        ImGui::SliderFloat("#1", &step, 0.0f, 10.0f, "ratio = %.3f");
+        ImGui::SliderFloat("##1", &step, 0.0f, 10.0f, "ratio = %.3f");
         ae.setStep(step);
 
-        ImGui::Text("Color");
-        ImGui::ColorEdit3("Lab", col1);
-        ImGui::ColorEdit3("Porta", col2);
-        ImGui::ColorEdit3("Computador", col_computer);
-        ImGui::ColorEdit3("Mesa", col_table);
-        ImGui::ColorEdit3("Ar condicionado", col_aircond);
+        ImGui::Text("Texturas");
+
+        ImGui::Text("Porta");
+        ImGui::InputText("##tex1", tex1, IM_ARRAYSIZE(tex1));
+        // ImGui::SameLine();
+        // if(ImGui::Button("Carregar")) {
+        //     loadTex();
+        // }
+        ImGui::InputText("##tex2", tex2, IM_ARRAYSIZE(tex2));
+        if(ImGui::Button("Carregar")) {
+            loadTex();
+        }
+
+        // ImGui::Text("Color");
+        // ImGui::ColorEdit3("Lab", col1);
+        // ImGui::ColorEdit3("Porta", col2);
+        // ImGui::ColorEdit3("Computador", col_computer);
+        // ImGui::ColorEdit3("Mesa", col_table);
+        // ImGui::ColorEdit3("Ar condicionado", col_aircond);
+        ImGui::Text("Luz ambiente");
+        ImGui::SliderFloat("##2", &amb_light, 0.0f, 8.0f, "ratio = %.3f");
+        std::array<GLfloat,4> al{amb_light, amb_light, amb_light, 1};
+        ae.setAmbientLightParms(al);
     ImGui::End();
 }
 
